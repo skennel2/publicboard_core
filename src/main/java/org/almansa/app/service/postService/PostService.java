@@ -14,7 +14,10 @@ import org.almansa.app.core.post.Post;
 import org.almansa.app.core.service.ServiceBase;
 import org.almansa.app.service.boardService.BoardRepository;
 import org.almansa.app.service.memberService.MemberRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class PostService extends ServiceBase{
 	
 	private PostRepository postRepo;
@@ -24,7 +27,8 @@ public class PostService extends ServiceBase{
     final int postTextContentsMaximumLength = 300;
     final int postTextNameMaximumLength = 30;
 	
-	public void writeNewPost(final long memberId, final  long boardId, final String name, final String contents) {
+    @Transactional
+	public void writeNewPost(final long memberId, final long boardId, final String name, final String contents) {
 		final Member member = memberRepo.getById(memberId);			
 		final Board board = boardRepo.getById(boardId);
 		
@@ -42,8 +46,26 @@ public class PostService extends ServiceBase{
 				boardInfo, 
 				writerInfo, 
 				postTextContentsMaximumLength, 
-				postTextNameMaximumLength);
+				postTextNameMaximumLength,
+				0);
 		
 		postRepo.update(post);			
+	}
+		
+	@Transactional
+	public Post getPostByUserClick(final long clickerId, final long postId) {
+		final Post post = postRepo.getById(postId);
+		
+		post.increaseClickCount(clickerId);
+		postRepo.update(post);
+		
+		return post;
+	}
+	
+	@Transactional
+	public List<Post> getWritersPosts(final long writerId){
+		final List<Post> writersPosts = postRepo.getByWriterId(writerId);
+		
+		return writersPosts;
 	}
 }

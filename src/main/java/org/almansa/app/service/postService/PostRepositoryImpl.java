@@ -29,5 +29,11 @@ public class PostRepositoryImpl implements PostRepository{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Post> getByWriterId(long writerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

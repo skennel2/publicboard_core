@@ -17,10 +17,12 @@ public class DefaultTextPost implements Post{
 	
 	private int maximumContentsLength;
 	private int maximumNameLength;
+	
+	private int clickCount;
 
 	public DefaultTextPost(String name, Date creationDate, Date modifyDate, String contents,
 			OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int maximumContentsLength,
-			int maximumNameLength) {
+			int maximumNameLength, int clickCount) {
 		super();
 		this.name = name;
 		this.creationDate = creationDate;
@@ -30,11 +32,12 @@ public class DefaultTextPost implements Post{
 		this.writerInfomation = writerInfomation;
 		this.maximumContentsLength = maximumContentsLength;
 		this.maximumNameLength = maximumNameLength;
+		this.clickCount = clickCount;
 	}
 	
 	public DefaultTextPost(long id, String name, Date creationDate, Date modifyDate, String contents,
 			OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int maximumContentsLength,
-			int maximumNameLength) {
+			int maximumNameLength, int clickCount) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,6 +48,7 @@ public class DefaultTextPost implements Post{
 		this.writerInfomation = writerInfomation;
 		this.maximumContentsLength = maximumContentsLength;
 		this.maximumNameLength = maximumNameLength;
+		this.clickCount = clickCount;
 	}	
 
 	@Override
@@ -94,12 +98,15 @@ public class DefaultTextPost implements Post{
 	
 	@Override
 	public void write(String contents) {
+		if(contents.length() > maximumContentsLength) {
+			throw new RuntimeException();
+		}
+		
 		this.contents = contents;
 	}
 
 	@Override
 	public WriterInfomation getWriterInfomation() {
-		// TODO Auto-generated method stub
 		return writerInfomation;
 	}
 
@@ -110,7 +117,18 @@ public class DefaultTextPost implements Post{
 	
 	@Override
 	public int getMaximumTextLength() {
-		// TODO Auto-generated method stub
 		return maximumContentsLength;
+	}
+
+	@Override
+	public int getClickCount() {
+		return clickCount;
+	}
+
+	@Override
+	public void increaseClickCount(long clickUserId) {
+		if(clickUserId != writerInfomation.getWriterId()) {
+			this.clickCount++;
+		}
 	}
 }

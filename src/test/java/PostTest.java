@@ -39,7 +39,8 @@ public class PostTest {
 					}
 				},
 				500, 
-				30);
+				30, 
+				0);
 		
 		post.changeName("가입인사입니다.");
 		post.write("냉무");
