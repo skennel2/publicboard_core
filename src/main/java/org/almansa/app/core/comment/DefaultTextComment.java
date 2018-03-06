@@ -2,6 +2,7 @@ package org.almansa.app.core.comment;
 
 import java.util.Date;
 
+import org.almansa.app.core.OwnerPostInfomation;
 import org.almansa.app.core.WriterInfomation;
 
 public class DefaultTextComment implements Comment{
@@ -25,6 +26,11 @@ public class DefaultTextComment implements Comment{
 	}
 
 	@Override
+	public void setCreationDate(Date creationTime) {
+		this.creationDate = creationTime;
+	}	
+	
+	@Override
 	public void write(String contents) {
 		this.contents = contents;
 	}
@@ -47,5 +53,7 @@ public class DefaultTextComment implements Comment{
 	@Override
 	public OwnerPostInfomation getOwnerPostInfomation() {
 		return ownerPostInfomation;
-	}	
+	}
+
+	
 }

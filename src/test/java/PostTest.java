@@ -2,9 +2,9 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import org.almansa.app.core.OwnerBoardInfomation;
 import org.almansa.app.core.WriterInfomation;
 import org.almansa.app.core.post.DefaultTextPost;
-import org.almansa.app.core.post.OwnerBoardInfomation;
 import org.junit.Test;
 
 public class PostTest {

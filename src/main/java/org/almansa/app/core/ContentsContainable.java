@@ -1,5 +1,5 @@
 package org.almansa.app.core;
 
-public interface Contents{
+public interface ContentsContainable{
 	Object getContents();
 }

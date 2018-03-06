@@ -1,6 +1,6 @@
 package org.almansa.app.core;
 
-public interface WritableTextContents extends TextContents{
+public interface WritableTextContentsContainable extends TextContents{
 	void write(String contents);
 	WriterInfomation getWriterInfomation();
 }

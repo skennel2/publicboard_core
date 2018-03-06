@@ -48,6 +48,11 @@ public class DefaultTextBoard implements Board{
 	}
 
 	@Override
+	public void setCreationDate(Date creationTime) {
+		this.creationDate = creationTime;	
+	}
+	
+	@Override
 	public Date getCreationDate() {		
 		return creationDate;
 	}

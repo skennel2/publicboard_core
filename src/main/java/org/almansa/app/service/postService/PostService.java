@@ -3,11 +3,11 @@ package org.almansa.app.service.postService;
 import java.util.Date;
 import java.util.List;
 
+import org.almansa.app.core.OwnerBoardInfomation;
 import org.almansa.app.core.WriterInfomation;
 import org.almansa.app.core.board.Board;
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.post.DefaultTextPost;
-import org.almansa.app.core.post.OwnerBoardInfomation;
 import org.almansa.app.core.post.Post;
 import org.almansa.app.service.boardService.BoardRepository;
 import org.almansa.app.service.memberService.MemberRepository;

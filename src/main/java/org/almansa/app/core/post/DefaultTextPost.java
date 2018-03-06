@@ -2,6 +2,7 @@ package org.almansa.app.core.post;
 
 import java.util.Date;
 
+import org.almansa.app.core.OwnerBoardInfomation;
 import org.almansa.app.core.WriterInfomation;
 
 public class DefaultTextPost implements Post{
@@ -62,17 +63,22 @@ public class DefaultTextPost implements Post{
 	}
 
 	@Override
+	public void setCreationDate(Date creationTime) {
+		this.creationDate = creationTime;
+	}	
+	
+	@Override
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
 	@Override
-	public Date getModifyDate() {
+	public Date getModifiedDate() {
 		return modifyDate;
 	}
 
 	@Override
-	public void changeModifyDate(Date newDate) {
+	public void changeModifiedDate(Date newDate) {
 		this.modifyDate = newDate;
 	}
 
