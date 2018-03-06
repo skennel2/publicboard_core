@@ -24,8 +24,8 @@ public class PostService extends ServiceBase{
 	private MemberRepository memberRepo;
 	private BoardRepository boardRepo;
 	
-    final int postTextContentsMaximumLength = 300;
-    final int postTextNameMaximumLength = 30;
+	final int postTextContentsMaximumLength = 300;
+	final int postTextNameMaximumLength = 30;
 	
     @Transactional
 	public void writeNewPost(final long memberId, final long boardId, final String name, final String contents) {
@@ -51,7 +51,25 @@ public class PostService extends ServiceBase{
 		
 		postRepo.update(post);			
 	}
-		
+    
+    @Transactional
+	public void modifyTextPostByWriter(final long postId, final long modifierId, final String name, final String contents){
+
+    	final Post post = postRepo.getById(postId);
+    	final Member modifier = memberRepo.getById(modifierId);		
+    	
+    	verifyNotNull(name);
+    	verifyNotNull(contents);
+    	verifyNotNull(post);
+    	verifyEquals(modifierId, modifier.getId());
+    	
+    	post.changeName(name);
+    	post.write(contents);
+    	post.changeModifiedDate(new Date());
+    	
+    	postRepo.update(post);    	
+	}    
+    
 	@Transactional
 	public Post getPostByUserClick(final long clickerId, final long postId) {
 		final Post post = postRepo.getById(postId);
@@ -65,7 +83,6 @@ public class PostService extends ServiceBase{
 	@Transactional
 	public List<Post> getWritersPosts(final long writerId){
 		final List<Post> writersPosts = postRepo.getByWriterId(writerId);
-		
 		return writersPosts;
 	}
 }
