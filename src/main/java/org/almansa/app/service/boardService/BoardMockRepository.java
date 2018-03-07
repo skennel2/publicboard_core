@@ -1,14 +1,17 @@
 package org.almansa.app.service.boardService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.almansa.app.core.board.Board;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BoardMockRepository implements BoardRepository{
 
-	private Map<Long, Board> map;
+	private Map<Long, Board> map = new HashMap<Long, Board>()	;
 	
 	@Override
 	public Board getById(Long id) {
@@ -29,18 +32,22 @@ public class BoardMockRepository implements BoardRepository{
 
 	@Override
 	public void update(Board target) {
-		Board board = map.get(target.getId());
-		
-		board.changeName(target.getName());
-		
-		if(target.isAbleToWrite()) {
-			board.allowToWrite();
+		if(!map.containsKey(target.getId())) {
+			map.put(target.getId(), target);
 		}else {
-			board.blockToWrite();
+			Board board = map.get(target.getId());
+			
+			board.changeName(target.getName());
+			
+			if(target.isAbleToWrite()) {
+				board.allowToWrite();
+			}else {
+				board.blockToWrite();
+			}
+			
+			delete(target.getId());
+			map.put(board.getId(), board);
 		}
-		
-		delete(target.getId());
-		map.put(board.getId(), board);		
 	}
 	
 }

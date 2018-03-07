@@ -14,20 +14,35 @@ import org.almansa.app.core.post.Post;
 import org.almansa.app.core.service.ServiceBase;
 import org.almansa.app.service.boardService.BoardRepository;
 import org.almansa.app.service.memberService.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Component
 public class PostService extends ServiceBase{
 	
+	@Autowired
 	private PostRepository postRepo;
+	@Autowired
 	private MemberRepository memberRepo;
+	@Autowired
 	private BoardRepository boardRepo;
 	
 	final int postTextContentsMaximumLength = 300;
 	final int postTextNameMaximumLength = 30;
 	
-    @Transactional
+    public PostService(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo) {
+		super();
+		this.postRepo = postRepo;
+		this.memberRepo = memberRepo;
+		this.boardRepo = boardRepo;
+	}
+    
+    public PostService() {
+	}    
+
+	@Transactional
 	public void writeNewPost(final long memberId, final long boardId, final String name, final String contents) {
 		final Member member = memberRepo.getById(memberId);			
 		final Board board = boardRepo.getById(boardId);
