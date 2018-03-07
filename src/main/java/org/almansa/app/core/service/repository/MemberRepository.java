@@ -1,4 +1,4 @@
-package org.almansa.app.service.memberService;
+package org.almansa.app.core.service.repository;
 
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.post.Post;

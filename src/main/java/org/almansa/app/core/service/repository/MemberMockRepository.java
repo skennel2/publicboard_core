@@ -1,4 +1,4 @@
-package org.almansa.app.service.memberService;
+package org.almansa.app.core.service.repository;
 
 import java.util.HashMap;
 import java.util.Map;

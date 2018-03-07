@@ -1,8 +1,7 @@
-package org.almansa.app.service.postService;
+package org.almansa.app.core.service.repository;
 
 import java.util.List;
 
-import org.almansa.app.core.Repository;
 import org.almansa.app.core.post.Post;
 
 public interface PostRepository extends Repository<Long, Post> {

@@ -69,7 +69,6 @@ public class DefaultTextBoard implements Board{
 
 	@Override
 	public int getMaximumNameLength() {
-		// TODO Auto-generated method stub
 		return maximumNameLength;
 	}	
 	

@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.almansa.app.core.board.Board;
+import org.almansa.app.core.service.repository.BoardRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BoardMockRepository implements BoardRepository{
 
-	private Map<Long, Board> map = new HashMap<Long, Board>()	;
+	private Map<Long, Board> map = new HashMap<Long, Board>();
 	
 	@Override
 	public Board getById(Long id) {

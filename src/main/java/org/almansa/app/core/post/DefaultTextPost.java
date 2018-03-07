@@ -136,4 +136,14 @@ public class DefaultTextPost implements Post{
 			this.clickCount++;
 		}
 	}
+
+	@Override
+	public boolean isPossibleDelete(long userId) {
+		return userId == this.writerInfomation.getWriterId();
+	}
+
+	@Override
+	public boolean isPossibleModify(long userId) {
+		return userId == this.writerInfomation.getWriterId();
+	}
 }
