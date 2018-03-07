@@ -38,6 +38,11 @@ public class DefaultTextBoard implements Board{
 	}
 
 	@Override
+	public void setId(Long id) {		
+		this.id = id;
+	}
+	
+	@Override
 	public void changeName(String newName) {
 		this.name = newName;
 	}

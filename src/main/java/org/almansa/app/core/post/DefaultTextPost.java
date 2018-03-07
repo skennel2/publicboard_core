@@ -57,6 +57,11 @@ public class DefaultTextPost implements Post{
 	}
 
 	@Override
+	public void setId(Long id) {
+		this.id= id;
+	}	
+	
+	@Override
 	public void changeName(String newName) {
 		this.name = newName;
 	}

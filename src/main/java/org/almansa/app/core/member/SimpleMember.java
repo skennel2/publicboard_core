@@ -12,6 +12,11 @@ public class SimpleMember implements Member{
 	}
 
 	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -25,5 +30,4 @@ public class SimpleMember implements Member{
 	public String toString() {
 		return "SimpleMember [id=" + id + ", loginId=" + loginId + "]";
 	}
-	
 }

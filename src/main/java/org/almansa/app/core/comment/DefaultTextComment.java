@@ -16,6 +16,11 @@ public class DefaultTextComment implements Comment{
 	private int maximumContentsLength;
 
 	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@Override
 	public Long getId() {
 		return id;
 	}
