@@ -6,14 +6,14 @@ import java.util.List;
 
 import org.almansa.app.core.board.Board;
 import org.almansa.app.core.board.DefaultTextBoard;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class BoardSimpleService implements BoardService{
 
 	@Override
 	public List<Board> getBoardList() {
-		DefaultTextBoard board = new DefaultTextBoard("자유", new Date(), new ArrayList<String>(), 20, true);
+		DefaultTextBoard board = new DefaultTextBoard(1, "자유", new Date(), new ArrayList<String>(), 20, true);
 		ArrayList<Board> boards = new ArrayList<Board>();
 		boards.add(board);
 		

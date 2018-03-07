@@ -1,18 +1,24 @@
-package org.almansa.app.service.boardService;
+package org.almansa.app.core.service.repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.almansa.app.core.board.Board;
-import org.almansa.app.core.service.repository.BoardRepository;
+import org.almansa.app.core.board.DefaultTextBoard;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BoardMockRepository implements BoardRepository{
 
 	private Map<Long, Board> map = new HashMap<Long, Board>();
+	
+	public BoardMockRepository(){
+		map.put((long) 1, new DefaultTextBoard(1, "자유게", new Date(), new ArrayList<String>(), 300, true));	
+		map.put((long) 2, new DefaultTextBoard(2, "개발게", new Date(), new ArrayList<String>(), 300, true));	
+	}
 	
 	@Override
 	public Board getById(Long id) {
