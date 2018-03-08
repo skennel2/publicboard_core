@@ -87,6 +87,11 @@ public class PostServiceImpl extends ServiceBase implements PostService{
 	}
 	
 	@Override
+	public Post getById(long postId) {
+		return postRepo.getById(postId);
+	}
+	
+	@Override
 	public List<Post> getWritersPosts(final long writerId){
 		final List<Post> writersPosts = postRepo.getByWriterId(writerId);
 		return writersPosts;
