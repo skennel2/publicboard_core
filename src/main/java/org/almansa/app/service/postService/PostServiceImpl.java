@@ -3,9 +3,7 @@ package org.almansa.app.service.postService;
 import java.util.Date;
 import java.util.List;
 
-import org.almansa.app.core.OwnerBoardInfomation;
 import org.almansa.app.core.OwnerBoardInfomationImpl;
-import org.almansa.app.core.WriterInfomation;
 import org.almansa.app.core.WriterInfomationImpl;
 import org.almansa.app.core.board.Board;
 import org.almansa.app.core.member.Member;
@@ -17,8 +15,6 @@ import org.almansa.app.core.service.repository.MemberRepository;
 import org.almansa.app.core.service.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class PostServiceImpl extends ServiceBase implements PostService {

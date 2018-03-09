@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.almansa.app.core.Entity;
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.member.SimpleMember;
 import org.springframework.stereotype.Component;
