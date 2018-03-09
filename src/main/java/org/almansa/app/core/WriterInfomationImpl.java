@@ -1,21 +1,21 @@
 package org.almansa.app.core;
 
-public class WriterInfomationImpl implements WriterInfomation{
+public class WriterInfomationImpl implements WriterInfomation {
 
-	private long writerId;
-	private String writerLoginId;
-	
-	public WriterInfomationImpl(long writerId, String writerLoginId) {
-		super();
-		this.writerId = writerId;
-		this.writerLoginId = writerLoginId;
-	}
+    private long writerId;
+    private String writerLoginId;
 
-	public long getWriterId() {
-		return writerId;
-	}
+    public WriterInfomationImpl(long writerId, String writerLoginId) {
+        super();
+        this.writerId = writerId;
+        this.writerLoginId = writerLoginId;
+    }
 
-	public String getWriterLoginId() {
-		return writerLoginId;
-	}
+    public long getWriterId() {
+        return writerId;
+    }
+
+    public String getWriterLoginId() {
+        return writerLoginId;
+    }
 }

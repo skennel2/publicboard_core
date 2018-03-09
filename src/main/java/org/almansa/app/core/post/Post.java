@@ -11,12 +11,15 @@ import org.almansa.app.core.TextContents;
 import org.almansa.app.core.WritableTextContentsContainable;
 import org.almansa.app.core.WriterInfomation;
 
-public interface Post extends Entity<Long>, ChangableNamed, ClickCountable, WritableTextContentsContainable, CreationDateRecordable, ModifiedDateRecordable{
-	OwnerBoardInfomation getOwnerBoardInfomation();
-	WriterInfomation getWriterInfomation();
-	
-	int getMaximumNameLength();
-	
-	boolean isPossibleDelete(long userId);
-	boolean isPossibleModify(long userId);	
+public interface Post extends Entity<Long>, ChangableNamed, ClickCountable, WritableTextContentsContainable,
+        CreationDateRecordable, ModifiedDateRecordable {
+    OwnerBoardInfomation getOwnerBoardInfomation();
+
+    WriterInfomation getWriterInfomation();
+
+    int getMaximumNameLength();
+
+    boolean isPossibleDelete(long userId);
+
+    boolean isPossibleModify(long userId);
 }

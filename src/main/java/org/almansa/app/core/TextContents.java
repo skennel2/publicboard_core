@@ -1,6 +1,7 @@
 package org.almansa.app.core;
 
-public interface TextContents extends ContentsContainable{
-	String getContents();
-	int getMaximumTextLength();
+public interface TextContents extends ContentsContainable {
+    String getContents();
+
+    int getMaximumTextLength();
 }

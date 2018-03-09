@@ -11,50 +11,50 @@ import org.almansa.app.core.board.DefaultTextBoard;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BoardMockRepository implements BoardRepository{
+public class BoardMockRepository implements BoardRepository {
 
-	private Map<Long, Board> map = new HashMap<Long, Board>();
-	
-	public BoardMockRepository(){
-		map.put((long) 1, new DefaultTextBoard(1, "자유게", new Date(), new ArrayList<String>(), 300, true));	
-		map.put((long) 2, new DefaultTextBoard(2, "개발게", new Date(), new ArrayList<String>(), 300, true));	
-	}
-	
-	@Override
-	public Board getById(Long id) {
-		return map.get(id);
-	}
+    private Map<Long, Board> map = new HashMap<Long, Board>();
 
-	@Override
-	public List<Board> getAll() {
-		List<Board> board = new ArrayList<Board>();
-		board.addAll(map.values());
-		return board;
-	}
+    public BoardMockRepository() {
+        map.put((long) 1, new DefaultTextBoard(1, "자유게", new Date(), new ArrayList<String>(), 300, true));
+        map.put((long) 2, new DefaultTextBoard(2, "개발게", new Date(), new ArrayList<String>(), 300, true));
+    }
 
-	@Override
-	public void delete(Long id) {
-		map.remove(id);		
-	}
+    @Override
+    public Board getById(Long id) {
+        return map.get(id);
+    }
 
-	@Override
-	public void update(Board target) {
-		if(!map.containsKey(target.getId())) {
-			map.put(target.getId(), target);
-		}else {
-			Board board = map.get(target.getId());
-			
-			board.changeName(target.getName());
-			
-			if(target.isAbleToWrite()) {
-				board.allowToWrite();
-			}else {
-				board.blockToWrite();
-			}
-			
-			delete(target.getId());
-			map.put(board.getId(), board);
-		}
-	}
-	
+    @Override
+    public List<Board> getAll() {
+        List<Board> board = new ArrayList<Board>();
+        board.addAll(map.values());
+        return board;
+    }
+
+    @Override
+    public void delete(Long id) {
+        map.remove(id);
+    }
+
+    @Override
+    public void update(Board target) {
+        if (!map.containsKey(target.getId())) {
+            map.put(target.getId(), target);
+        } else {
+            Board board = map.get(target.getId());
+
+            board.changeName(target.getName());
+
+            if (target.isAbleToWrite()) {
+                board.allowToWrite();
+            } else {
+                board.blockToWrite();
+            }
+
+            delete(target.getId());
+            map.put(board.getId(), board);
+        }
+    }
+
 }
