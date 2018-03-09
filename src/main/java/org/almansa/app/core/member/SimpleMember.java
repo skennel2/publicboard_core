@@ -2,11 +2,11 @@ package org.almansa.app.core.member;
 
 public class SimpleMember implements Member {
 
-    private long id;
+    private Long id;
     private String loginId;
     private String password;
 
-    public SimpleMember(long id, String loginId, String password) {
+    public SimpleMember(Long id, String loginId, String password) {
         super();
         this.id = id;
         this.loginId = loginId;

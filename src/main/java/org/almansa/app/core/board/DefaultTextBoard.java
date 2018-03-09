@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DefaultTextBoard implements Board {
 
-    private long id;
+    private Long id;
     private String name;
     private Date creationDate;
     private List<String> categories;
@@ -13,7 +13,7 @@ public class DefaultTextBoard implements Board {
 
     private int maximumNameLength;
 
-    public DefaultTextBoard(long id, String name, Date creationDate, List<String> categories, int maximumNameLength,
+    public DefaultTextBoard(Long id, String name, Date creationDate, List<String> categories, int maximumNameLength,
             boolean isAbleToWrite) {
         super();
         this.id = id;

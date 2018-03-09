@@ -7,7 +7,7 @@ import org.almansa.app.core.WriterInfomation;
 
 public class DefaultTextPost implements Post {
 
-    private long id;
+    private Long id;
     private String name;
     private Date creationDate;
     private Date modifyDate;

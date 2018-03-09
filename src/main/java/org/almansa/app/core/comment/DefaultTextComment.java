@@ -7,7 +7,7 @@ import org.almansa.app.core.WriterInfomation;
 
 public class DefaultTextComment implements Comment {
 
-    private long id;
+    private Long id;
     private Date creationDate;
     private String contents;
     private OwnerPostInfomation ownerPostInfomation;

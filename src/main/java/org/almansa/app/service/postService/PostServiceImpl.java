@@ -23,18 +23,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class PostServiceImpl extends ServiceBase implements PostService {
 
-    @Autowired
     private PostRepository postRepo;
-    @Autowired
     private MemberRepository memberRepo;
-    @Autowired
     private BoardRepository boardRepo;
 
     final int postTextContentsMaximumLength = 300;
     final int postTextNameMaximumLength = 30;
+    
+    @Autowired
+    public PostServiceImpl(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo) {
+        super();
+        this.postRepo = postRepo;
+        this.memberRepo = memberRepo;
+        this.boardRepo = boardRepo;
+    }
 
     @Override
-    public void writeNewPost(final long memberId, final long boardId, final String name, final String contents) {
+    public void writeNewPost(final Long memberId, final Long boardId, final String name, final String contents) {
         final Member member = memberRepo.getById(memberId);
         final Board board = boardRepo.getById(boardId);
 
@@ -44,14 +49,22 @@ public class PostServiceImpl extends ServiceBase implements PostService {
         OwnerBoardInfomationImpl boardInfo = new OwnerBoardInfomationImpl(board.getId());
         WriterInfomationImpl writerInfo = new WriterInfomationImpl(member.getId(), member.getLoginId());
 
-        Post post = new DefaultTextPost(name, new Date(), new Date(), contents, boardInfo, writerInfo,
-                postTextContentsMaximumLength, postTextNameMaximumLength, 0);
+        Post post = new DefaultTextPost(
+                name, 
+                new Date(), 
+                new Date(), 
+                contents, 
+                boardInfo, 
+                writerInfo,
+                postTextContentsMaximumLength, 
+                postTextNameMaximumLength, 
+                0);
 
         postRepo.update(post);
     }
 
     @Override
-    public void modifyTextPostByWriter(final long postId, final long modifierId, final String name,
+    public void modifyTextPostByWriter(final Long postId, final Long modifierId, final String name,
             final String contents) {
         final Post post = postRepo.getById(postId);
         final Member modifier = memberRepo.getById(modifierId);
@@ -70,7 +83,7 @@ public class PostServiceImpl extends ServiceBase implements PostService {
     }
 
     @Override
-    public Post getPostByUserClick(final long clickerId, final long postId) {
+    public Post getPostByUserClick(final Long clickerId, final Long postId) {
         final Post post = postRepo.getById(postId);
 
         post.increaseClickCount(clickerId);
@@ -85,13 +98,13 @@ public class PostServiceImpl extends ServiceBase implements PostService {
     }
 
     @Override
-    public List<Post> getWritersPosts(final long writerId) {
+    public List<Post> getWritersPosts(final Long writerId) {
         final List<Post> writersPosts = postRepo.getByWriterId(writerId);
         return writersPosts;
     }
 
     @Override
-    public void deletePost(final long userId, final long postId) {
+    public void deletePost(final Long userId, final Long postId) {
         final Post post = postRepo.getById(postId);
 
         if (post != null) {

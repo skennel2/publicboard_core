@@ -13,7 +13,7 @@ public class BoardSimpleService implements BoardService {
 
     @Override
     public List<Board> getBoardList() {
-        DefaultTextBoard board = new DefaultTextBoard(1, "자유", new Date(), new ArrayList<String>(), 20, true);
+        DefaultTextBoard board = new DefaultTextBoard((long) 1, "자유", new Date(), new ArrayList<String>(), 20, true);
         ArrayList<Board> boards = new ArrayList<Board>();
         boards.add(board);
 
