@@ -52,7 +52,12 @@ public class MemberMockRepository implements MemberRepository {
 
     @Override
     public Member getByLoginId(String loginId) {
-        // TODO Auto-generated method stub
+        for (Member member : memberMap.values()) {
+            if(member.getLoginId().equals(loginId)) {
+                return member;
+            }
+        }
+        
         return null;
     }
 }
