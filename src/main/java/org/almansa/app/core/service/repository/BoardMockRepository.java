@@ -56,5 +56,4 @@ public class BoardMockRepository implements BoardRepository {
             map.put(board.getId(), board);
         }
     }
-
 }
