@@ -13,11 +13,11 @@ public class MemberMockRepository implements MemberRepository{
 	private Map<Long, Member> memberMap = new HashMap<Long, Member>();
 	
 	public MemberMockRepository() {
-		Member member1 = new SimpleMember(1, "skennel");
-		Member member2 = new SimpleMember(2, "gaeko14");
-		Member member3 = new SimpleMember(3, "hashswan");
-		Member member4 = new SimpleMember(4, "billstax");
-		Member member5 = new SimpleMember(5, "swings");
+		Member member1 = new SimpleMember(1, "skennel", "1234");
+		Member member2 = new SimpleMember(2, "gaeko14", "1234");
+		Member member3 = new SimpleMember(3, "hashswan", "1234");
+		Member member4 = new SimpleMember(4, "billstax", "1234");
+		Member member5 = new SimpleMember(5, "swings", "1234");
 		
 		memberMap.put((long) 1, member1);
 		memberMap.put((long) 2, member2);

@@ -42,7 +42,7 @@ public class PostServiceImpl extends ServiceBase implements PostService{
 		verifyNotNull(board);	
 		
 		OwnerBoardInfomationImpl boardInfo = new OwnerBoardInfomationImpl(board.getId());
-		WriterInfomationImpl writerInfo = new WriterInfomationImpl(member.getId(), member.loginId());
+		WriterInfomationImpl writerInfo = new WriterInfomationImpl(member.getId(), member.getLoginId());
 		
 		Post post = new DefaultTextPost(
 				name, 
