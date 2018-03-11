@@ -34,19 +34,19 @@ public class MemberMockRepository implements MemberRepository {
 
     @Override
     public List<Member> getAll() {
-        // TODO Auto-generated method stub
+        // TODO 모든 멤버를 가져오는 로직
         return null;
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
+        // TODO id에 해당하는 멤버를 삭제하는 로직
         
     }
 
     @Override
     public void update(Member member) {
-        // TODO Auto-generated method stub
+        // TODO 멤버 업데이트
         
     }
 

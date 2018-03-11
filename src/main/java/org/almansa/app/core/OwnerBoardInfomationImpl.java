@@ -10,8 +10,7 @@ public class OwnerBoardInfomationImpl implements OwnerBoardInfomation {
     }
 
     @Override
-    public long getOwnerBoardKey() {
-        // TODO Auto-generated method stub
+    public long getOwnerBoardKey(){
         return ownerBoardKey;
     }
 }

@@ -11,7 +11,6 @@ public class OwnerPostInfomationImpl implements OwnerBoardInfomation {
 
     @Override
     public long getOwnerBoardKey() {
-        // TODO Auto-generated method stub
         return ownerBoardKey;
     }
 }

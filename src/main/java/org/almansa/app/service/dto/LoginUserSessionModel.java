@@ -16,4 +16,9 @@ public class LoginUserSessionModel {
     public void setLoginId(String loginId) {
         this.loginId = loginId;
     }
+    
+    @Override
+    public String toString() {
+        return "LoginUserSessionModel [id=" + id + ", loginId=" + loginId + "]";
+    }
 }

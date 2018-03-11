@@ -22,13 +22,13 @@ public class BoardSimpleService implements BoardService {
 
     @Override
     public void addBoard(Board board) {
-        // TODO Auto-generated method stub
+        // TODO 게시판 추가 로직
 
     }
 
     @Override
     public void deleteBoard(long boardId) {
-        // TODO Auto-generated method stub
+        // TODO 게시판 삭제 로직
 
     }
 

@@ -23,13 +23,11 @@ public class PostTest {
 
                     @Override
                     public String getWriterLoginId() {
-                        // TODO Auto-generated method stub
                         return "skennel";
                     }
 
                     @Override
                     public long getWriterId() {
-                        // TODO Auto-generated method stub
                         return 1;
                     }
                 }, 500, 30, 0);
