@@ -109,4 +109,9 @@ public class PostServiceImpl extends ServiceBase implements PostService {
             }
         }
     }
+
+    @Override
+    public List<Post> getAll() {
+        return postRepo.getAll();
+    }
 }

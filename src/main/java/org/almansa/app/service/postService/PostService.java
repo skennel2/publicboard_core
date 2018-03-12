@@ -15,6 +15,8 @@ public interface PostService {
     Post getPostByUserClick(Long clickerId, Long postId);
 
     List<Post> getWritersPosts(Long writerId);
-
+    
+    List<Post> getAll();
+    
     void deletePost(Long userId, Long postId);
 }
