@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.member.SimpleMember;
+import org.almansa.app.core.post.Post;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -40,14 +41,20 @@ public class MemberMockRepository implements MemberRepository {
 
     @Override
     public void delete(Long id) {
-        // TODO id에 해당하는 멤버를 삭제하는 로직
-        
+        if(memberMap.containsKey(id)) {
+            memberMap.remove(id);
+        }
     }
 
     @Override
     public void update(Member member) {
-        // TODO 멤버 업데이트
+        if(member.getId() == null || !memberMap.containsKey(member.getId())) {                 
+            long newId = generateNewId();
+            member.setId(new Long(newId));
+            memberMap.put(new Long(newId), member);       
+        }
         
+        // TODO 멤버 업데이트 처리
     }
 
     @Override
@@ -60,4 +67,16 @@ public class MemberMockRepository implements MemberRepository {
         
         return null;
     }
+    
+    private long generateNewId() {
+
+        long maxId = 0;
+
+        for (Member member : memberMap.values()) {
+            if (member.getId() > maxId) {
+                maxId = member.getId();
+            }
+        }
+        return maxId + 1;
+    }    
 }

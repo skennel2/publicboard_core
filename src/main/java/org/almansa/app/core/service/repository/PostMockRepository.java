@@ -1,10 +1,12 @@
 package org.almansa.app.core.service.repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.almansa.app.core.post.Post;
 import org.springframework.stereotype.Component;
@@ -12,8 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostMockRepository implements PostRepository {
 
-    private Map<Long, Post> postMap = new HashMap<Long, Post>();
-
+    private TreeMap<Long, Post> postMap = new TreeMap<Long, Post>();
+    
+    public PostMockRepository() {
+        Comparator<Long> comparator = (Comparator<Long>) postMap.comparator();
+    }
+    
     @Override
     public Post getById(Long id) {
         return postMap.get(id);
@@ -21,6 +27,8 @@ public class PostMockRepository implements PostRepository {
 
     @Override
     public List<Post> getAll() {
+        
+        
         List<Post> resultList = new ArrayList<Post>();
 
         for (Post post : postMap.values()) {

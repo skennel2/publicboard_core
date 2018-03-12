@@ -13,6 +13,12 @@ public class SimpleMember implements Member {
         this.password = password;
     }
 
+    public SimpleMember(String loginId, String password) {
+        super();        
+        this.loginId = loginId;
+        this.password = password;
+    }
+    
     @Override
     public void setId(Long id) {
         this.id = id;
