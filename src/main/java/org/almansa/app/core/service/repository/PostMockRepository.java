@@ -9,16 +9,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.almansa.app.core.post.Post;
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PostMockRepository implements PostRepository {
 
     private TreeMap<Long, Post> postMap = new TreeMap<Long, Post>();
-    
-    public PostMockRepository() {
-        Comparator<Long> comparator = (Comparator<Long>) postMap.comparator();
-    }
     
     @Override
     public Post getById(Long id) {
@@ -80,5 +77,11 @@ public class PostMockRepository implements PostRepository {
             }
         }
         return maxId + 1;
+    }
+
+    @Override
+    public List<Post> getByCriteria(Criteria criteria) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

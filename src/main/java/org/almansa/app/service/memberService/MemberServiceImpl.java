@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MemberServiceImpl extends ServiceBase{
+public class MemberServiceImpl extends ServiceBase implements MemberService{
         
     private MemberRepository memberRepo;
     
@@ -19,13 +19,10 @@ public class MemberServiceImpl extends ServiceBase{
         this.memberRepo = memberRepo;
     }
 
-    /**
-     * 로그인 성공 LoginUserSessionModel 리턴 
-     * 실패 null 리턴
-     * @param loginId
-     * @param password
-     * @return
+    /* (non-Javadoc)
+     * @see org.almansa.app.service.memberService.MemberService#loginAndGetUserSessionModel(java.lang.String, java.lang.String)
      */
+    @Override
     public LoginUserSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = memberRepo.getByLoginId(loginId);
         
@@ -41,6 +38,10 @@ public class MemberServiceImpl extends ServiceBase{
         return null;
     }    
     
+    /* (non-Javadoc)
+     * @see org.almansa.app.service.memberService.MemberService#joinSimply(java.lang.String, java.lang.String)
+     */
+    @Override
     public void joinSimply(String loginId, String password) {
         verifyNotNull(loginId);
         verifyNotNull(password);

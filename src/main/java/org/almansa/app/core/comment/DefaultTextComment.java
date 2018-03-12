@@ -15,6 +15,27 @@ public class DefaultTextComment implements Comment {
 
     private int maximumContentsLength;
 
+    public DefaultTextComment(Long id, Date creationDate, String contents, OwnerPostInfomation ownerPostInfomation,
+            WriterInfomation writerInfomation, int maximumContentsLength) {
+        super();
+        this.id = id;
+        this.creationDate = creationDate;
+        this.contents = contents;
+        this.ownerPostInfomation = ownerPostInfomation;
+        this.writerInfomation = writerInfomation;
+        this.maximumContentsLength = maximumContentsLength;
+    }
+
+    public DefaultTextComment(Date creationDate, String contents, OwnerPostInfomation ownerPostInfomation,
+            WriterInfomation writerInfomation, int maximumContentsLength) {
+        super();
+        this.creationDate = creationDate;
+        this.contents = contents;
+        this.ownerPostInfomation = ownerPostInfomation;
+        this.writerInfomation = writerInfomation;
+        this.maximumContentsLength = maximumContentsLength;
+    }
+
     @Override
     public void setId(Long id) {
         this.id = id;
