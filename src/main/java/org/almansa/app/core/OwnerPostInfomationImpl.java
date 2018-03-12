@@ -1,6 +1,6 @@
 package org.almansa.app.core;
 
-public class OwnerPostInfomationImpl implements OwnerBoardInfomation {
+public class OwnerPostInfomationImpl implements OwnerPostInfomation {
 
     private long ownerBoardKey;
 
@@ -10,7 +10,8 @@ public class OwnerPostInfomationImpl implements OwnerBoardInfomation {
     }
 
     @Override
-    public long getOwnerBoardKey() {
+    public long getOwnerPostKey() {
         return ownerBoardKey;
     }
+
 }

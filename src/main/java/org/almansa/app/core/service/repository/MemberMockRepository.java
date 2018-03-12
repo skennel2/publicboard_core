@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.member.SimpleMember;
-import org.almansa.app.core.post.Post;
 import org.springframework.stereotype.Component;
 
 @Component

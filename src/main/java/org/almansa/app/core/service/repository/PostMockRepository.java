@@ -1,11 +1,8 @@
 package org.almansa.app.core.service.repository;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 
 import org.almansa.app.core.post.Post;
@@ -77,11 +74,5 @@ public class PostMockRepository implements PostRepository {
             }
         }
         return maxId + 1;
-    }
-
-    @Override
-    public List<Post> getByCriteria(Criteria criteria) {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

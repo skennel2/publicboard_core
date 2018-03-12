@@ -1,6 +1,7 @@
 package org.almansa.app.service.commentService;
 
 import java.util.Date;
+import java.util.List;
 
 import org.almansa.app.core.OwnerPostInfomation;
 import org.almansa.app.core.OwnerPostInfomationImpl;
@@ -11,15 +12,15 @@ import org.almansa.app.core.comment.DefaultTextComment;
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.post.Post;
 import org.almansa.app.core.service.ServiceBase;
+import org.almansa.app.core.service.repository.CommentRepository;
 import org.almansa.app.core.service.repository.MemberRepository;
 import org.almansa.app.core.service.repository.PostRepository;
-import org.almansa.app.service.memberService.MemberService;
-import org.almansa.app.service.memberService.MemberServiceImpl;
 
 public class CommentServiceImpl extends ServiceBase{
     
     private MemberRepository memberRepo;
     private PostRepository postRepo;
+    private CommentRepository commentRepo;
     
     private final int maximumContentsLength = 300;
     
@@ -27,10 +28,19 @@ public class CommentServiceImpl extends ServiceBase{
         Member member = memberRepo.getById(userId);
         Post post = postRepo.getById(postId);
         
+        verifyNotNull(member);
+        verifyNotNull(post);
+        
         WriterInfomation writerInfomation = new WriterInfomationImpl(member.getId(), member.getLoginId());
-       // OwnerPostInfomation postInfomation = new OwnerPostInfomationImpl(post.getId());
+        OwnerPostInfomation postInfomation = new OwnerPostInfomationImpl(post.getId());
         
-        //Comment newComment = new DefaultTextComment(new Date(), contents, postInfomation, writerInfomation, maximumContentsLength);
+        Comment newComment = new DefaultTextComment(new Date(), contents, postInfomation, writerInfomation, maximumContentsLength);
         
+        commentRepo.update(newComment);
     }
+    
+    public List<Comment> getPostsComments(Long postId){
+        return commentRepo.getByPostId(postId);
+    }
+
 }

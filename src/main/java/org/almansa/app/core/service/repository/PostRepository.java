@@ -7,5 +7,4 @@ import org.hibernate.Criteria;
 
 public interface PostRepository extends Repository<Long, Post> {
     List<Post> getByWriterId(long writerId);
-    List<Post> getByCriteria(Criteria criteria);
 }
