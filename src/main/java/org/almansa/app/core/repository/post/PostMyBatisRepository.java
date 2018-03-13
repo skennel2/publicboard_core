@@ -34,8 +34,8 @@ public class PostMyBatisRepository implements PostRepository{
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        
+        int cnt = sqlSession.delete(namespace + "delete", id);
+        System.out.println(cnt);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PostMyBatisRepository implements PostRepository{
         if(target.getId() == null) {
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("NAME", target.getName());
-            parameters.put("CREATION_DATE",  new SimpleDateFormat("yyyyMMdd:hhmmss").format(target.getCreationDate()));
+            parameters.put("CREATION_DATE",  new SimpleDateFormat("yyyyMMdd:hhmmss").format(target.getCreationDate())); // TODO SQLITE DATE FORMAT
             parameters.put("MODIFIED_DATE",new SimpleDateFormat("yyyyMMdd:hhmmss").format(target.getCreationDate()));
             parameters.put("CONTENTS", target.getContents());
             parameters.put("BOARD_ID", target.getOwnerBoardInfomation().getOwnerBoardKey());
@@ -53,12 +53,10 @@ public class PostMyBatisRepository implements PostRepository{
             int cnt =  sqlSession.update(namespace + "insert", parameters);
             System.out.println(cnt);
         }
-        
     }
 
     @Override
     public List<Post> getByWriterId(long writerId) {
-        // TODO Auto-generated method stub
-        return null;
+        return sqlSession.selectList(namespace + "getByWriterId", writerId);
     }
 }

@@ -64,11 +64,35 @@
           LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
           WHERE POST.ID = #{id}
     </select> 
+
+    <select id="getByWriterId" resultMap="postMapper" parameterType="Long">
+        SELECT POST.ID, 
+               POST.NAME, 
+               POST.CONTENTS, 
+               POST.MEMBER_ID, 
+               IFNULL(POST.CLICK_CNT, 0),              
+               POST.CREATION_DATE,
+               POST.MODIFIED_DATE,             
+               MEMBER.ID AS MID,
+               MEMBER.LOGIN_ID, 
+               BOARD.ID AS BID,
+               BOARD.NAME
+          FROM POST 
+          LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
+          LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
+          WHERE POST.MEMBER_ID = #{id}
+    </select> 
     
-     <select id="insert" resultMap="postMapper" parameterType="hashmap">
+    <delete id="delete" parameterType="Long">
+        DELETE  
+          FROM POST
+         WHERE ID = #{id}
+    </delete>
+    
+     <insert id="insert" parameterType="hashmap">
 		INSERT INTO POST (NAME, CREATION_DATE, MODIFIED_DATE, CONTENTS, BOARD_ID, MEMBER_ID, CLICK_CNT)
 		VALUES(#{NAME}, #{CREATION_DATE}, #{MODIFIED_DATE}, #{CONTENTS}, #{BOARD_ID}, #{MEMBER_ID}, 0)
-    </select>    
+    </insert>    
   
 </mapper>
 
