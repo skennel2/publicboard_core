@@ -19,9 +19,6 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
         this.memberRepo = memberRepo;
     }
 
-    /* (non-Javadoc)
-     * @see org.almansa.app.service.memberService.MemberService#loginAndGetUserSessionModel(java.lang.String, java.lang.String)
-     */
     @Override
     public LoginUserSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = memberRepo.getByLoginId(loginId);
@@ -38,9 +35,6 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
         return null;
     }    
     
-    /* (non-Javadoc)
-     * @see org.almansa.app.service.memberService.MemberService#joinSimply(java.lang.String, java.lang.String)
-     */
     @Override
     public void joinSimply(String loginId, String password) {
         verifyNotNull(loginId);

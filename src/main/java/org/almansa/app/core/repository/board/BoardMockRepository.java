@@ -16,8 +16,8 @@ public class BoardMockRepository implements BoardRepository {
     private Map<Long, Board> map = new HashMap<Long, Board>();
 
     public BoardMockRepository() {
-        map.put((long) 1, new DefaultTextBoard((long) 1, "자유게", new Date(), new ArrayList<String>(), 300, true));
-        map.put((long) 2, new DefaultTextBoard((long) 2, "개발게", new Date(), new ArrayList<String>(), 300, true));
+        map.put((long) 1, new DefaultTextBoard((long) 1, "자유게", new Date(), new ArrayList<String>(), true));
+        map.put((long) 2, new DefaultTextBoard((long) 2, "개발게", new Date(), new ArrayList<String>(), true));
     }
 
     @Override

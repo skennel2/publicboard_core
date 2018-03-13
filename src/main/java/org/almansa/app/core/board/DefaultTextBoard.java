@@ -11,26 +11,20 @@ public class DefaultTextBoard implements Board {
     private List<String> categories;
     private boolean isAbleToWrite;
 
-    private int maximumNameLength;
-
-    public DefaultTextBoard(Long id, String name, Date creationDate, List<String> categories, int maximumNameLength,
-            boolean isAbleToWrite) {
+    public DefaultTextBoard(Long id, String name, Date creationDate, List<String> categories, boolean isAbleToWrite) {
         super();
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
         this.categories = categories;
-        this.maximumNameLength = maximumNameLength;
         this.isAbleToWrite = isAbleToWrite;
     }
 
-    public DefaultTextBoard(String name, Date creationDate, List<String> categories, int maximumNameLength,
-            boolean isAbleToWrite) {
+    public DefaultTextBoard(String name, Date creationDate, List<String> categories, boolean isAbleToWrite) {
         super();
         this.name = name;
         this.creationDate = creationDate;
         this.categories = categories;
-        this.maximumNameLength = maximumNameLength;
         this.isAbleToWrite = isAbleToWrite;
     }
 

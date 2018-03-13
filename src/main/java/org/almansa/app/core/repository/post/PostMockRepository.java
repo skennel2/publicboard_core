@@ -8,7 +8,6 @@ import java.util.TreeMap;
 import org.almansa.app.core.post.Post;
 import org.springframework.stereotype.Component;
 
-//@Component
 public class PostMockRepository implements PostRepository {
 
     private TreeMap<Long, Post> postMap = new TreeMap<Long, Post>();
@@ -20,8 +19,6 @@ public class PostMockRepository implements PostRepository {
 
     @Override
     public List<Post> getAll() {
-        
-        
         List<Post> resultList = new ArrayList<Post>();
 
         for (Post post : postMap.values()) {

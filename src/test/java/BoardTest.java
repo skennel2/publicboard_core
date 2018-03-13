@@ -10,7 +10,7 @@ public class BoardTest {
 
     @Test
     public void boardTest() {
-        DefaultTextBoard board = new DefaultTextBoard("자유", new Date(), new ArrayList<String>(), 20, true);
+        DefaultTextBoard board = new DefaultTextBoard("자유", new Date(), new ArrayList<String>(), true);
         board.changeName("자유게시판");
 
         assertEquals("자유게시판", board.getName());
