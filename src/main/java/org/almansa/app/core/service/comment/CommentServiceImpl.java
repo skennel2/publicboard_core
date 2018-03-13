@@ -22,8 +22,6 @@ public class CommentServiceImpl extends ServiceBase{
     private PostRepository postRepo;
     private CommentRepository commentRepo;
     
-    private final int maximumContentsLength = 300;
-    
     public void writeComment(Long postId, Long userId, String contents) {
         Member member = memberRepo.getById(userId);
         Post post = postRepo.getById(postId);
@@ -34,7 +32,7 @@ public class CommentServiceImpl extends ServiceBase{
         WriterInfomation writerInfomation = new WriterInfomationImpl(member.getId(), member.getLoginId());
         OwnerPostInfomation postInfomation = new OwnerPostInfomationImpl(post.getId());
         
-        Comment newComment = new DefaultTextComment(new Date(), contents, postInfomation, writerInfomation, maximumContentsLength);
+        Comment newComment = new DefaultTextComment(new Date(), contents, postInfomation, writerInfomation);
         
         commentRepo.update(newComment);
     }

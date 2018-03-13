@@ -52,8 +52,6 @@ public class PostServiceImpl extends ServiceBase implements PostService {
                 contents, 
                 boardInfo, 
                 writerInfo,
-                postTextContentsMaximumLength, 
-                postTextNameMaximumLength, 
                 0);
 
         postRepo.update(post);

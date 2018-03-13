@@ -3,13 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="postMapper">
+<mapper namespace="POST_MAPPER">
     <resultMap type="org.almansa.app.core.post.DefaultTextPost" id="postMapper">
-        <id property="id" column="ID"/>
-        <result column="NAME" property="Name"/>
+        <constructor>
+            <idArg column="ID" javaType="Long"/>
+            <arg column="NAME" javaType="String"/>
+            <arg column="CREATION_DATE" javaType="Date"/>
+            <arg column="MODIFIED_DATE" javaType="Date"/>
+            <arg column="CONTENTS" javaType="String"/>
+        </constructor>
     </resultMap>
     
     <select id="all" resultMap="postMapper">
-        SELECT * FROM POST
+		SELECT POST.ID, 
+		       POST.NAME, 
+		       POST.CONTENTS, 
+		       POST.MEMBER_ID, 
+		       MEMBER.ID AS MID,
+		       MEMBER.LOGIN_ID, 
+		       POST.CREATION_DATE,
+		       POST.MODIFIED_DATE
+		  FROM POST LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
     </select> 
+  
 </mapper>
+
+

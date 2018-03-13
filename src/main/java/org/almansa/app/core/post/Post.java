@@ -15,8 +15,6 @@ public interface Post extends Entity<Long>, ChangableNamed, ClickCountable, Writ
 
     WriterInfomation getWriterInfomation();
 
-    int getMaximumNameLength();
-
     boolean isPossibleDelete(long userId);
 
     boolean isPossibleModify(long userId);

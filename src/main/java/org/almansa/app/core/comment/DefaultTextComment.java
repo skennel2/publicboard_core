@@ -13,27 +13,23 @@ public class DefaultTextComment implements Comment {
     private OwnerPostInfomation ownerPostInfomation;
     private WriterInfomation writerInfomation;
 
-    private int maximumContentsLength;
-
     public DefaultTextComment(Long id, Date creationDate, String contents, OwnerPostInfomation ownerPostInfomation,
-            WriterInfomation writerInfomation, int maximumContentsLength) {
+            WriterInfomation writerInfomation) {
         super();
         this.id = id;
         this.creationDate = creationDate;
         this.contents = contents;
         this.ownerPostInfomation = ownerPostInfomation;
         this.writerInfomation = writerInfomation;
-        this.maximumContentsLength = maximumContentsLength;
     }
 
     public DefaultTextComment(Date creationDate, String contents, OwnerPostInfomation ownerPostInfomation,
-            WriterInfomation writerInfomation, int maximumContentsLength) {
+            WriterInfomation writerInfomation) {
         super();
         this.creationDate = creationDate;
         this.contents = contents;
         this.ownerPostInfomation = ownerPostInfomation;
         this.writerInfomation = writerInfomation;
-        this.maximumContentsLength = maximumContentsLength;
     }
 
     @Override
@@ -69,11 +65,6 @@ public class DefaultTextComment implements Comment {
     @Override
     public WriterInfomation getWriterInfomation() {
         return writerInfomation;
-    }
-
-    @Override
-    public int getMaximumTextLength() {
-        return maximumContentsLength;
     }
 
     @Override

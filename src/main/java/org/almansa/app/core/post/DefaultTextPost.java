@@ -15,14 +15,10 @@ public class DefaultTextPost implements Post {
     private OwnerBoardInfomation ownerBoardInfomation;
     private WriterInfomation writerInfomation;
 
-    private int maximumContentsLength;
-    private int maximumNameLength;
-
     private int clickCount;
 
     public DefaultTextPost(String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int maximumContentsLength,
-            int maximumNameLength, int clickCount) {
+            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int clickCount) {
         super();
         this.name = name;
         this.creationDate = creationDate;
@@ -30,14 +26,11 @@ public class DefaultTextPost implements Post {
         this.contents = contents;
         this.ownerBoardInfomation = ownerBoardInfomation;
         this.writerInfomation = writerInfomation;
-        this.maximumContentsLength = maximumContentsLength;
-        this.maximumNameLength = maximumNameLength;
         this.clickCount = clickCount;
     }
 
     public DefaultTextPost(long id, String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int maximumContentsLength,
-            int maximumNameLength, int clickCount) {
+            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int clickCount) {
         super();
         this.id = id;
         this.name = name;
@@ -46,8 +39,6 @@ public class DefaultTextPost implements Post {
         this.contents = contents;
         this.ownerBoardInfomation = ownerBoardInfomation;
         this.writerInfomation = writerInfomation;
-        this.maximumContentsLength = maximumContentsLength;
-        this.maximumNameLength = maximumNameLength;
         this.clickCount = clickCount;
     }
 
@@ -103,26 +94,12 @@ public class DefaultTextPost implements Post {
 
     @Override
     public void write(String contents) {
-        if (contents.length() > maximumContentsLength) {
-            throw new RuntimeException();
-        }
-
         this.contents = contents;
     }
 
     @Override
     public WriterInfomation getWriterInfomation() {
         return writerInfomation;
-    }
-
-    @Override
-    public int getMaximumNameLength() {
-        return maximumNameLength;
-    }
-
-    @Override
-    public int getMaximumTextLength() {
-        return maximumContentsLength;
     }
 
     @Override

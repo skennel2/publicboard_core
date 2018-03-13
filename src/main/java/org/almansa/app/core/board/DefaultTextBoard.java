@@ -70,11 +70,6 @@ public class DefaultTextBoard implements Board {
     }
 
     @Override
-    public int getMaximumNameLength() {
-        return maximumNameLength;
-    }
-
-    @Override
     public boolean isAbleToWrite() {
         return isAbleToWrite;
     }
