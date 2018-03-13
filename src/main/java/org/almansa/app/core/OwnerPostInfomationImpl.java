@@ -2,9 +2,9 @@ package org.almansa.app.core;
 
 public class OwnerPostInfomationImpl implements OwnerPostInfomation {
 
-    private long ownerBoardKey;
+    private Long ownerBoardKey;
 
-    public OwnerPostInfomationImpl(long ownerBoardKey) {
+    public OwnerPostInfomationImpl(Long ownerBoardKey) {
         super();
         this.ownerBoardKey = ownerBoardKey;
     }

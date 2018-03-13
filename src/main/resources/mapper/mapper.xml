@@ -6,25 +6,69 @@
 <mapper namespace="POST_MAPPER">
     <resultMap type="org.almansa.app.core.post.DefaultTextPost" id="postMapper">
         <constructor>
-            <idArg column="ID" javaType="Long"/>
+            <idArg column="ID" javaType="java.lang.Long"/>
             <arg column="NAME" javaType="String"/>
-            <arg column="CREATION_DATE" javaType="Date"/>
-            <arg column="MODIFIED_DATE" javaType="Date"/>
+            <arg column="CREATION_DATE" javaType="Date" typeHandler="org.almansa.app.core.repository.post.SqliteDateTypeHandler"/>
+            <arg column="MODIFIED_DATE" javaType="Date" typeHandler="org.almansa.app.core.repository.post.SqliteDateTypeHandler"/>
             <arg column="CONTENTS" javaType="String"/>
+            <arg resultMap="boardInfoMapper" javaType="org.almansa.app.core.OwnerBoardInfomation"/>            
+            <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.WriterInfomation"/>
         </constructor>
     </resultMap>
     
+    <resultMap type="org.almansa.app.core.OwnerBoardInfomationImpl" id="boardInfoMapper" >        
+        <constructor>
+            <arg column="BID" javaType="java.lang.Long" />
+        </constructor>        
+    </resultMap>
+    
+     <resultMap type="org.almansa.app.core.WriterInfomationImpl" id="writerInfoMapper">        
+        <constructor>
+            <arg column="MID" javaType="java.lang.Long" />
+            <arg column="LOGIN_ID" javaType="String"/>
+        </constructor>        
+    </resultMap>
+    
     <select id="all" resultMap="postMapper">
-		SELECT POST.ID, 
-		       POST.NAME, 
-		       POST.CONTENTS, 
-		       POST.MEMBER_ID, 
-		       MEMBER.ID AS MID,
-		       MEMBER.LOGIN_ID, 
-		       POST.CREATION_DATE,
-		       POST.MODIFIED_DATE
-		  FROM POST LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
+        SELECT POST.ID, 
+               POST.NAME, 
+               POST.CONTENTS, 
+               POST.MEMBER_ID, 
+               IFNULL(POST.CLICK_CNT, 0),              
+               POST.CREATION_DATE,
+               POST.MODIFIED_DATE,             
+               MEMBER.ID AS MID,
+               MEMBER.LOGIN_ID, 
+               BOARD.ID AS BID,
+               BOARD.NAME
+          FROM POST 
+          LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
+          LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
+          ORDER BY POST.CREATION_DATE DESC
     </select> 
+    
+    <select id="getById" resultMap="postMapper" parameterType="Long">
+        SELECT POST.ID, 
+               POST.NAME, 
+               POST.CONTENTS, 
+               POST.MEMBER_ID, 
+               IFNULL(POST.CLICK_CNT, 0),              
+               POST.CREATION_DATE,
+               POST.MODIFIED_DATE,             
+               MEMBER.ID AS MID,
+               MEMBER.LOGIN_ID, 
+               BOARD.ID AS BID,
+               BOARD.NAME
+          FROM POST 
+          LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
+          LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
+          WHERE POST.ID = #{id}
+    </select> 
+    
+     <select id="insert" resultMap="postMapper" parameterType="hashmap">
+		INSERT INTO POST (NAME, CREATION_DATE, MODIFIED_DATE, CONTENTS, BOARD_ID, MEMBER_ID, CLICK_CNT)
+		VALUES(#{NAME}, #{CREATION_DATE}, #{MODIFIED_DATE}, #{CONTENTS}, #{BOARD_ID}, #{MEMBER_ID}, 0)
+    </select>    
   
 </mapper>
 

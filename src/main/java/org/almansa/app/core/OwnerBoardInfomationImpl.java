@@ -4,7 +4,7 @@ public class OwnerBoardInfomationImpl implements OwnerBoardInfomation {
 
     public long ownerBoardKey;
 
-    public OwnerBoardInfomationImpl(long ownerBoardKey) {
+    public OwnerBoardInfomationImpl(Long ownerBoardKey) {
         super();
         this.ownerBoardKey = ownerBoardKey;
     }

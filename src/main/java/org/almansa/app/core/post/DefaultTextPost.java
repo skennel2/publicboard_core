@@ -29,7 +29,7 @@ public class DefaultTextPost implements Post {
         this.clickCount = clickCount;
     }
 
-    public DefaultTextPost(long id, String name, Date creationDate, Date modifyDate, String contents,
+    public DefaultTextPost(Long id, String name, Date creationDate, Date modifyDate, String contents,
             OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int clickCount) {
         super();
         this.id = id;
@@ -40,6 +40,19 @@ public class DefaultTextPost implements Post {
         this.ownerBoardInfomation = ownerBoardInfomation;
         this.writerInfomation = writerInfomation;
         this.clickCount = clickCount;
+    }
+    
+    public DefaultTextPost(Long id, String name, Date creationDate, Date modifyDate, String contents,
+            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.creationDate = creationDate;
+        this.modifyDate = modifyDate;
+        this.contents = contents;
+        this.ownerBoardInfomation = ownerBoardInfomation;
+        this.writerInfomation = writerInfomation;
+        this.clickCount = 0;
     }
 
     @Override

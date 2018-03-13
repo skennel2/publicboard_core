@@ -2,10 +2,10 @@ package org.almansa.app.core;
 
 public class WriterInfomationImpl implements WriterInfomation {
 
-    private long writerId;
+    private Long writerId;
     private String writerLoginId;
 
-    public WriterInfomationImpl(long writerId, String writerLoginId) {
+    public WriterInfomationImpl(Long writerId, String writerLoginId) {
         super();
         this.writerId = writerId;
         this.writerLoginId = writerLoginId;
