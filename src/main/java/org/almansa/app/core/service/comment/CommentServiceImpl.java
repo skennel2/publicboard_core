@@ -1,4 +1,4 @@
-package org.almansa.app.service.commentService;
+package org.almansa.app.core.service.comment;
 
 import java.util.Date;
 import java.util.List;
@@ -11,10 +11,10 @@ import org.almansa.app.core.comment.Comment;
 import org.almansa.app.core.comment.DefaultTextComment;
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.post.Post;
+import org.almansa.app.core.repository.comment.CommentRepository;
+import org.almansa.app.core.repository.member.MemberRepository;
+import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.service.ServiceBase;
-import org.almansa.app.core.service.repository.CommentRepository;
-import org.almansa.app.core.service.repository.MemberRepository;
-import org.almansa.app.core.service.repository.PostRepository;
 
 public class CommentServiceImpl extends ServiceBase{
     

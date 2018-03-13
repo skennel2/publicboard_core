@@ -1,4 +1,4 @@
-package org.almansa.app.service.postService;
+package org.almansa.app.core.service.post;
 
 import java.util.Date;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.almansa.app.core.board.Board;
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.post.DefaultTextPost;
 import org.almansa.app.core.post.Post;
+import org.almansa.app.core.repository.board.BoardRepository;
+import org.almansa.app.core.repository.member.MemberRepository;
+import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.service.ServiceBase;
-import org.almansa.app.core.service.repository.BoardRepository;
-import org.almansa.app.core.service.repository.MemberRepository;
-import org.almansa.app.core.service.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

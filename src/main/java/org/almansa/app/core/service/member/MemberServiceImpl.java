@@ -1,10 +1,10 @@
-package org.almansa.app.service.memberService;
+package org.almansa.app.core.service.member;
 
 import org.almansa.app.core.member.Member;
 import org.almansa.app.core.member.SimpleMember;
+import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.service.ServiceBase;
-import org.almansa.app.core.service.repository.MemberRepository;
-import org.almansa.app.service.dto.LoginUserSessionModel;
+import org.almansa.app.core.service.dto.LoginUserSessionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,8 @@
 import static org.junit.Assert.assertEquals;
 
-import org.almansa.app.core.service.repository.MemberMockRepository;
-import org.almansa.app.service.memberService.MemberService;
-import org.almansa.app.service.memberService.MemberServiceImpl;
+import org.almansa.app.core.repository.member.MemberMockRepository;
+import org.almansa.app.core.service.member.MemberService;
+import org.almansa.app.core.service.member.MemberServiceImpl;
 import org.junit.Test;
 
 public class MemberServiceImplTest {

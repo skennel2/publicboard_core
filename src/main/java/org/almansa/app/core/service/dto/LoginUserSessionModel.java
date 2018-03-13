@@ -1,4 +1,4 @@
-package org.almansa.app.service.dto;
+package org.almansa.app.core.service.dto;
 
 public class LoginUserSessionModel {
     private Long id;

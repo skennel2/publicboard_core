@@ -1,4 +1,4 @@
-package org.almansa.app.service.postService;
+package org.almansa.app.core.service.post;
 
 import java.util.List;
 

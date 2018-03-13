@@ -1,4 +1,4 @@
-package org.almansa.app.service.boardService;
+package org.almansa.app.core.service.board;
 
 import java.util.ArrayList;
 import java.util.Date;

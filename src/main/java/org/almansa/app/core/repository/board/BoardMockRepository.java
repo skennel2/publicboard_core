@@ -1,4 +1,4 @@
-package org.almansa.app.core.service.repository;
+package org.almansa.app.core.repository.board;
 
 import java.util.ArrayList;
 import java.util.Date;

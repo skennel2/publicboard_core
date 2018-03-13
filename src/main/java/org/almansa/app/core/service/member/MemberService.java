@@ -1,6 +1,6 @@
-package org.almansa.app.service.memberService;
+package org.almansa.app.core.service.member;
 
-import org.almansa.app.service.dto.LoginUserSessionModel;
+import org.almansa.app.core.service.dto.LoginUserSessionModel;
 
 public interface MemberService {
 
