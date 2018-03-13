@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.TreeMap;
 
 import org.almansa.app.core.post.Post;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class PostMockRepository implements PostRepository {
 
     private TreeMap<Long, Post> postMap = new TreeMap<Long, Post>();
