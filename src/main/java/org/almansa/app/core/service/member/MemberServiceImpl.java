@@ -31,7 +31,6 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
             
             return sessionModel;
         }
-        
         return null;
     }    
     
