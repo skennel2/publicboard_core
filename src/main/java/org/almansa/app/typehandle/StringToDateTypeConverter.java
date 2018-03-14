@@ -7,7 +7,6 @@ import java.util.Date;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component()
 public class StringToDateTypeConverter implements Converter<String, Date>{
     
     private String dateStringFormat;
