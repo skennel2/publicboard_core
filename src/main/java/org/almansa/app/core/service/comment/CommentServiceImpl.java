@@ -16,16 +16,18 @@ import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.service.ServiceBase;
 
-public class CommentServiceImpl extends ServiceBase{
+public class CommentServiceImpl extends ServiceBase implements CommentService{
     
     private MemberRepository memberRepo;
     private PostRepository postRepo;
-    private CommentRepository commentRepo;
+    private CommentRepository commentRepo;   
    
+    @Override
     public List<Comment> getPostsComments(Long postId){
         return commentRepo.getByPostId(postId);
     }
             
+    @Override
     public void writeComment(Long postId, Long userId, String contents) {
         Member member = memberRepo.getById(userId);
         Post post = postRepo.getById(postId);
@@ -40,7 +42,8 @@ public class CommentServiceImpl extends ServiceBase{
         
         commentRepo.update(newComment);
     }
-   
+    
+    @Override
     public void deletePost(Long commentId, Long userId){
         Comment comment = commentRepo.getById(commentId);
         

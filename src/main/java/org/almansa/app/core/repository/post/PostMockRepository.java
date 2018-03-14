@@ -3,14 +3,14 @@ package org.almansa.app.core.repository.post;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import org.almansa.app.core.post.Post;
-import org.springframework.stereotype.Component;
 
 public class PostMockRepository implements PostRepository {
 
-    private TreeMap<Long, Post> postMap = new TreeMap<Long, Post>();
+    private Map<Long, Post> postMap = new TreeMap<Long, Post>();
     
     @Override
     public Post getById(Long id) {

@@ -1,4 +1,4 @@
-package org.almansa.app.typehandle;
+package org.almansa.app.typehandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,10 +13,19 @@ public class DateToStringTypeConverter implements Converter<Date, String>{
         super();
         this.dateStringFormat = dateStringFormat;
     }
+       
+    public String getDateStringFormat() {
+        return dateStringFormat;
+    }
+
+    public void setDateStringFormat(String dateStringFormat) {
+        this.dateStringFormat = dateStringFormat;
+    }
 
     @Override
     public String convert(Date source) {        
         String date = new SimpleDateFormat(dateStringFormat).format(source);
+
         return date;
     }
 }

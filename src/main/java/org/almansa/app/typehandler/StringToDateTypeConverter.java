@@ -1,11 +1,11 @@
-package org.almansa.app.typehandle;
+package org.almansa.app.typehandler;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 
 public class StringToDateTypeConverter implements Converter<String, Date>{
     
@@ -16,6 +16,14 @@ public class StringToDateTypeConverter implements Converter<String, Date>{
         this.dateStringFormat = dateStringFormat;
     }
     
+    public String getDateStringFormat() {
+        return dateStringFormat;
+    }
+
+    public void setDateStringFormat(String dateStringFormat) {
+        this.dateStringFormat = dateStringFormat;
+    }
+
     @Override
     public Date convert(String source){
         Date date = null;
@@ -25,5 +33,5 @@ public class StringToDateTypeConverter implements Converter<String, Date>{
             e.printStackTrace();
         }
         return date;
-    }    
+    }
 }

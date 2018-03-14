@@ -1,0 +1,47 @@
+package org.almansa.app.core.repository.member;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.almansa.app.core.member.Member;
+import org.apache.ibatis.session.SqlSession;
+
+public class MemberMyBatisRepository implements MemberRepository {
+
+    private SqlSession session;
+    
+    private final String mapperNamespace = "MEMBER_MAPPER.";
+    
+    @Override
+    public Member getById(Long id) {        
+        return session.selectOne(mapperNamespace + "getById", id);
+    }
+
+    @Override
+    public List<Member> getAll() {        
+        return session.selectList(mapperNamespace + "getAll");
+    }
+
+    @Override
+    public void delete(Long id) {
+        int rowCnt = session.delete(mapperNamespace + "delete", id);
+        System.out.println(rowCnt);
+    }
+
+    @Override
+    public void update(Member target) {        
+        if(target.getId() == null) {
+            Map<String, Object> parameters = new HashMap<String, Object>();
+            //TODO 파라미터 세팅
+            int rowCnt = session.update(mapperNamespace + "insert", parameters);
+            System.out.println(rowCnt);
+        }
+    }
+
+    @Override
+    public Member getByLoginId(String loginId) { 
+        return session.selectOne(mapperNamespace + "getByLoginId", loginId);
+    }
+
+}
