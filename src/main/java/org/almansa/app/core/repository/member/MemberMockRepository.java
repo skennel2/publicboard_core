@@ -8,7 +8,7 @@ import org.almansa.app.core.member.Member;
 import org.almansa.app.core.member.SimpleMember;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MemberMockRepository implements MemberRepository {
 
     private Map<Long, Member> memberMap = new HashMap<Long, Member>();

@@ -15,13 +15,22 @@ import org.almansa.app.core.repository.comment.CommentRepository;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.service.ServiceBase;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommentServiceImpl extends ServiceBase implements CommentService{
     
     private MemberRepository memberRepo;
     private PostRepository postRepo;
     private CommentRepository commentRepo;   
-   
+    
+    @Autowired
+    public CommentServiceImpl(MemberRepository memberRepo, PostRepository postRepo, CommentRepository commentRepo) {
+        super();
+        this.memberRepo = memberRepo;
+        this.postRepo = postRepo;
+        this.commentRepo = commentRepo;
+    }
+
     @Override
     public List<Comment> getPostsComments(Long postId){
         return commentRepo.getByPostId(postId);

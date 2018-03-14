@@ -8,7 +8,7 @@ public class SimpleMember implements Member {
     
     private boolean isAdmin;
 
-    public SimpleMember(Long id, String loginId, String password, boolean isAdmin) {
+    public SimpleMember(Long id, String loginId, String password, Boolean isAdmin) {
         super();
         this.id = id;
         this.loginId = loginId;
@@ -16,7 +16,7 @@ public class SimpleMember implements Member {
         this.isAdmin = isAdmin;
     }
 
-    public SimpleMember(String loginId, String password, boolean isAdmin) {
+    public SimpleMember(String loginId, String password, Boolean isAdmin) {
         super();        
         this.loginId = loginId;
         this.password = password;

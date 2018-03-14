@@ -10,6 +10,7 @@
             <idArg javaType="Long" column="ID"/>
             <arg javaType="String" column="LOGIN_ID"/>
             <arg javaType="String" column="PASSWORD"/>
+            <arg javaType="boolean" column="IS_ADMIN" typeHandler="org.almansa.app.typehandler.sqlite.SqliteBooleanTypeHandler"/>
         </constructor>
     </resultMap>
     
@@ -20,5 +21,23 @@
                IS_ADMIN
           FROM MEMBER
     </select>
+
+    <select id="getById" resultMap="memberMapper" parameterType="Long">
+        SELECT ID,
+               LOGIN_ID,
+               PASSWORD,
+               IS_ADMIN
+          FROM MEMBER
+         WHERE ID = #{id}
+    </select>
+    
+    <select id="getByLoginId" resultMap="memberMapper" parameterType="String">
+        SELECT ID,
+               LOGIN_ID,
+               PASSWORD,
+               IS_ADMIN
+          FROM MEMBER
+         WHERE LOGIN_ID = #{loginId}
+    </select>    
     
 </mapper>

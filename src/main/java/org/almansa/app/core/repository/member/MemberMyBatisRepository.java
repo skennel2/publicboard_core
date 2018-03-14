@@ -6,12 +6,21 @@ import java.util.Map;
 
 import org.almansa.app.core.member.Member;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemberMyBatisRepository implements MemberRepository {
 
     private SqlSession session;
     
     private final String mapperNamespace = "MEMBER_MAPPER.";
+    
+    @Autowired
+    public MemberMyBatisRepository(SqlSession session) {
+        super();
+        this.session = session;
+    }
     
     @Override
     public Member getById(Long id) {        

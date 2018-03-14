@@ -27,7 +27,7 @@ public class AdminPostService{
         this.adminPostCacheStorage = adminPostCacheStorage;
     }
 
-    @PostConstruct
+    //@PostConstruct
     private void updateCache() {
         adminPostCacheStorage.clear();     
         List<Member> admins = memberRepository.getAdminMembers();
