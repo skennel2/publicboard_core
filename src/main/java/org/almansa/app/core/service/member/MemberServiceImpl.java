@@ -43,7 +43,7 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
         Member member = memberRepo.getByLoginId(loginId);
         
         if(member == null) {
-            member = new SimpleMember(loginId, password);
+            member = new SimpleMember(loginId, password, false);
             memberRepo.update(member);      
         }
     }

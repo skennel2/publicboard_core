@@ -4,19 +4,12 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-
-import javax.annotation.PostConstruct;
 
 import org.almansa.app.typehandler.DateToStringTypeConverter;
 import org.almansa.app.typehandler.StringToDateTypeConverter;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Sqlite에는 Date 타입이 없기 때문에 자바에서 Date로 관리되는 값을 Sqlite의 TEXT 값으로 바라 볼수 있게 해준다. 
@@ -33,13 +26,6 @@ public class SqliteDateTypeHandler implements TypeHandler<Date>{
     private DateToStringTypeConverter dateToStringTypeConverter = new DateToStringTypeConverter(dateFormat);   
     private StringToDateTypeConverter stringToDateTypeConverter = new StringToDateTypeConverter(dateFormat); 
        
-    private Date getOldDate() {
-        Calendar cal= Calendar.getInstance();
-        cal.set(1900, 1, 1);
-        
-        return cal.getTime();
-    }
-    
     @Override
     public void setParameter(PreparedStatement ps, int i, Date parameter, JdbcType jdbcType) throws SQLException {
          String date = dateToStringTypeConverter.convert(parameter);

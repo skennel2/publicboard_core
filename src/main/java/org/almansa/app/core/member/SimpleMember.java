@@ -5,18 +5,22 @@ public class SimpleMember implements Member {
     private Long id;
     private String loginId;
     private String password;
+    
+    private boolean isAdmin;
 
-    public SimpleMember(Long id, String loginId, String password) {
+    public SimpleMember(Long id, String loginId, String password, boolean isAdmin) {
         super();
         this.id = id;
         this.loginId = loginId;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
-    public SimpleMember(String loginId, String password) {
+    public SimpleMember(String loginId, String password, boolean isAdmin) {
         super();        
         this.loginId = loginId;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
     
     @Override
@@ -39,6 +43,11 @@ public class SimpleMember implements Member {
         return password;
     }
 
+    @Override
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    
     @Override
     public String toString() {
         return "SimpleMember [id=" + id + ", loginId=" + loginId + "]";

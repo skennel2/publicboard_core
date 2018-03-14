@@ -45,6 +45,7 @@
           FROM POST 
           LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
           LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
+         WHERE IFNULL(POST.IS_ADMIN, 'F') != 'T'    
           ORDER BY POST.CREATION_DATE DESC
     </select> 
     
@@ -63,7 +64,8 @@
           FROM POST 
           LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
           LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
-          WHERE POST.ID = #{id}
+         WHERE POST.ID = #{id}
+           AND IFNULL(POST.IS_ADMIN, 'F') != "T"
     </select> 
 
     <select id="getByWriterId" resultMap="postMapper" parameterType="Long">
@@ -81,7 +83,8 @@
           FROM POST 
           LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
           LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
-          WHERE POST.MEMBER_ID = #{id}
+         WHERE POST.MEMBER_ID = #{id}
+           AND IFNULL(POST.IS_ADMIN, 'F') != "T"
     </select> 
     
     <delete id="delete" parameterType="Long">

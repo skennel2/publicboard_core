@@ -24,6 +24,11 @@ public class MemberMyBatisRepository implements MemberRepository {
     }
 
     @Override
+    public List<Member> getAdminMembers() {
+        return session.selectList(mapperNamespace + "getAdminMembers");
+    }    
+    
+    @Override
     public void delete(Long id) {
         int rowCnt = session.delete(mapperNamespace + "delete", id);
         System.out.println(rowCnt);

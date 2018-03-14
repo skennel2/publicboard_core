@@ -14,9 +14,9 @@ import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.service.ServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class PostServiceImpl extends ServiceBase implements PostService {
 
     private PostRepository postRepo;

@@ -6,4 +6,6 @@ public interface Member extends Entity<Long> {
     public String getLoginId();
 
     public String getPassword();
+    
+    public boolean isAdmin();
 }
