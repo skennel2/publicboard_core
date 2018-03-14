@@ -1,4 +1,4 @@
-package org.almansa.app.typehandler;
+package org.almansa.app.core.typehandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

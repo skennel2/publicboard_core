@@ -1,4 +1,4 @@
-package org.almansa.app.typehandler.sqlite;
+package org.almansa.app.core.typehandler.sqlite;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import org.almansa.app.typehandler.DateToStringTypeConverter;
-import org.almansa.app.typehandler.StringToDateTypeConverter;
+import org.almansa.app.core.typehandler.DateToStringTypeConverter;
+import org.almansa.app.core.typehandler.StringToDateTypeConverter;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 

@@ -1,4 +1,4 @@
-package org.almansa.app.typehandler.sqlite;
+package org.almansa.app.core.typehandler.sqlite;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

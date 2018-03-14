@@ -1,4 +1,4 @@
-package org.almansa.app.typehandler;
+package org.almansa.app.core.typehandler;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Service;
