@@ -23,9 +23,6 @@ public class PostServiceImpl extends ServiceBase implements PostService {
     private MemberRepository memberRepo;
     private BoardRepository boardRepo;
 
-    final int postTextContentsMaximumLength = 300;
-    final int postTextNameMaximumLength = 30;
-    
     @Autowired
     public PostServiceImpl(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo) {
         super();

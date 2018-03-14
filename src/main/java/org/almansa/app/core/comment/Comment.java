@@ -7,4 +7,6 @@ import org.almansa.app.core.WritableTextContentsContainable;
 
 public interface Comment extends Entity<Long>, WritableTextContentsContainable, CreationDateRecordable {
     OwnerPostInfomation getOwnerPostInfomation();
+
+    boolean isPossibleToDelete(Long userId);
 }

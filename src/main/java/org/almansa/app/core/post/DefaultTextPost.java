@@ -18,7 +18,7 @@ public class DefaultTextPost implements Post {
     private int clickCount;
 
     public DefaultTextPost(String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int clickCount) {
+            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, Integer clickCount) {
         super();
         this.name = name;
         this.creationDate = creationDate;
@@ -30,7 +30,7 @@ public class DefaultTextPost implements Post {
     }
 
     public DefaultTextPost(Long id, String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, int clickCount) {
+            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, Integer clickCount) {
         super();
         this.id = id;
         this.name = name;
@@ -40,20 +40,7 @@ public class DefaultTextPost implements Post {
         this.ownerBoardInfomation = ownerBoardInfomation;
         this.writerInfomation = writerInfomation;
         this.clickCount = clickCount;
-    }
-    
-    public DefaultTextPost(Long id, String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.creationDate = creationDate;
-        this.modifyDate = modifyDate;
-        this.contents = contents;
-        this.ownerBoardInfomation = ownerBoardInfomation;
-        this.writerInfomation = writerInfomation;
-        this.clickCount = 0;
-    }
+    }    
 
     @Override
     public Long getId() {

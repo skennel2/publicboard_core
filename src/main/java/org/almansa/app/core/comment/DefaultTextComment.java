@@ -72,4 +72,9 @@ public class DefaultTextComment implements Comment {
         return ownerPostInfomation;
     }
 
+    @Override
+    public boolean isPossibleToDelete(Long userId) {        
+        return userId.equals(writerInfomation.getWriterId());
+    }
+
 }

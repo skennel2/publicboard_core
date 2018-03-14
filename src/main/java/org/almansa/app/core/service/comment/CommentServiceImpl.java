@@ -21,7 +21,11 @@ public class CommentServiceImpl extends ServiceBase{
     private MemberRepository memberRepo;
     private PostRepository postRepo;
     private CommentRepository commentRepo;
-    
+   
+    public List<Comment> getPostsComments(Long postId){
+        return commentRepo.getByPostId(postId);
+    }
+            
     public void writeComment(Long postId, Long userId, String contents) {
         Member member = memberRepo.getById(userId);
         Post post = postRepo.getById(postId);
@@ -36,9 +40,12 @@ public class CommentServiceImpl extends ServiceBase{
         
         commentRepo.update(newComment);
     }
-    
-    public List<Comment> getPostsComments(Long postId){
-        return commentRepo.getByPostId(postId);
+   
+    public void deletePost(Long commentId, Long userId){
+        Comment comment = commentRepo.getById(commentId);
+        
+        if(comment != null && comment.isPossibleToDelete(userId)) {            
+            commentRepo.delete(commentId);            
+        }
     }
-
 }

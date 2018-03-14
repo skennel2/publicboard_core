@@ -8,11 +8,12 @@
         <constructor>
             <idArg column="ID" javaType="java.lang.Long"/>
             <arg column="NAME" javaType="String"/>
-            <arg column="CREATION_DATE" javaType="Date" typeHandler="org.almansa.app.core.repository.post.SqliteDateTypeHandler"/>
-            <arg column="MODIFIED_DATE" javaType="Date" typeHandler="org.almansa.app.core.repository.post.SqliteDateTypeHandler"/>
+            <arg column="CREATION_DATE" javaType="Date" typeHandler="org.almansa.app.typehandle.SqliteDateTypeHandler"/>
+            <arg column="MODIFIED_DATE" javaType="Date" typeHandler="org.almansa.app.typehandle.SqliteDateTypeHandler"/>
             <arg column="CONTENTS" javaType="String"/>
             <arg resultMap="boardInfoMapper" javaType="org.almansa.app.core.OwnerBoardInfomation"/>            
             <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.WriterInfomation"/>
+            <arg column="CLICK_CNT" javaType="java.lang.Integer"/> 
         </constructor>
     </resultMap>
     
@@ -34,7 +35,7 @@
                POST.NAME, 
                POST.CONTENTS, 
                POST.MEMBER_ID, 
-               IFNULL(POST.CLICK_CNT, 0),              
+               IFNULL(POST.CLICK_CNT, 0) AS CLICK_CNT,              
                POST.CREATION_DATE,
                POST.MODIFIED_DATE,             
                MEMBER.ID AS MID,
@@ -52,7 +53,7 @@
                POST.NAME, 
                POST.CONTENTS, 
                POST.MEMBER_ID, 
-               IFNULL(POST.CLICK_CNT, 0),              
+               IFNULL(POST.CLICK_CNT, 0) AS CLICK_CNT,              
                POST.CREATION_DATE,
                POST.MODIFIED_DATE,             
                MEMBER.ID AS MID,
@@ -70,7 +71,7 @@
                POST.NAME, 
                POST.CONTENTS, 
                POST.MEMBER_ID, 
-               IFNULL(POST.CLICK_CNT, 0),              
+               IFNULL(POST.CLICK_CNT, 0) AS CLICK_CNT,              
                POST.CREATION_DATE,
                POST.MODIFIED_DATE,             
                MEMBER.ID AS MID,
