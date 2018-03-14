@@ -45,7 +45,6 @@ public class CommentMyBatisRespository extends SqlSessionDaoSupport implements C
     public void update(Comment target) {
        if(target.getId() == null) {           
            Map<String, Object> parameters = new HashMap<String, Object>();
-           
            //TODO parameter setting
            
            getSqlSession().update(mapperNamespace + "insert", parameters);

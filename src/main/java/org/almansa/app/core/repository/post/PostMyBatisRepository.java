@@ -46,8 +46,8 @@ public class PostMyBatisRepository implements PostRepository{
         if(target.getId() == null) {
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("NAME", target.getName());
-            parameters.put("CREATION_DATE", dateToStringTypeConverter.convert(target.getCreationDate()));
-            parameters.put("MODIFIED_DATE", dateToStringTypeConverter.convert(target.getCreationDate()));
+            parameters.put("CREATION_DATE", target.getCreationDate()); //dateToStringTypeConverter.convert(target.getCreationDate()));
+            parameters.put("MODIFIED_DATE", target.getCreationDate());//dateToStringTypeConverter.convert(target.getCreationDate()));
             parameters.put("CONTENTS", target.getContents());
             parameters.put("BOARD_ID", target.getOwnerBoardInfomation().getOwnerBoardKey());
             parameters.put("MEMBER_ID", target.getWriterInfomation().getWriterId());

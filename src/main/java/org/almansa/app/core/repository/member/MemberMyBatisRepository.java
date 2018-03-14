@@ -47,7 +47,11 @@ public class MemberMyBatisRepository implements MemberRepository {
     public void update(Member target) {        
         if(target.getId() == null) {
             Map<String, Object> parameters = new HashMap<String, Object>();
-            //TODO 파라미터 세팅
+            parameters.put("ID" , target.getId());
+            parameters.put("LOGIN_ID" , target.getId());
+            parameters.put("ID" , target.getId());
+            parameters.put("ID" , target.getId());
+            
             int rowCnt = session.update(mapperNamespace + "insert", parameters);
             System.out.println(rowCnt);
         }
