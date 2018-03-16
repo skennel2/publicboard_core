@@ -1,6 +1,6 @@
 package org.almansa.app.core.service.dto;
 
-public class LoginUserSessionModel {
+public class LoginMemberSessionModel {
     private Long id;
     private String loginId;
     
@@ -19,6 +19,6 @@ public class LoginUserSessionModel {
     
     @Override
     public String toString() {
-        return "LoginUserSessionModel [id=" + id + ", loginId=" + loginId + "]";
+        return "LoginMemberSessionModel [id=" + id + ", loginId=" + loginId + "]";
     }
 }

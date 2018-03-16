@@ -31,5 +31,4 @@ public class BoardSimpleService implements BoardService {
         // TODO 게시판 삭제 로직
 
     }
-
 }

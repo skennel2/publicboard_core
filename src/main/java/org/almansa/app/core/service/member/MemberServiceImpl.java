@@ -4,7 +4,7 @@ import org.almansa.app.core.member.Member;
 import org.almansa.app.core.member.SimpleMember;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.service.ServiceBase;
-import org.almansa.app.core.service.dto.LoginUserSessionModel;
+import org.almansa.app.core.service.dto.LoginMemberSessionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,12 +20,12 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
     }
 
     @Override
-    public LoginUserSessionModel loginAndGetUserSessionModel(String loginId, String password) {
+    public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = memberRepo.getByLoginId(loginId);
         
         if(member != null && member.getPassword().equals(password)) {
             
-            LoginUserSessionModel sessionModel = new LoginUserSessionModel();
+            LoginMemberSessionModel sessionModel = new LoginMemberSessionModel();
             sessionModel.setId(member.getId());
             sessionModel.setLoginId(member.getLoginId());
             

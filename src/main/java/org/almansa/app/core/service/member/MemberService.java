@@ -1,6 +1,6 @@
 package org.almansa.app.core.service.member;
 
-import org.almansa.app.core.service.dto.LoginUserSessionModel;
+import org.almansa.app.core.service.dto.LoginMemberSessionModel;
 
 public interface MemberService {
 
@@ -11,7 +11,7 @@ public interface MemberService {
      * @param password
      * @return
      */
-    LoginUserSessionModel loginAndGetUserSessionModel(String loginId, String password);
+    LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password);
 
     void joinSimply(String loginId, String password);
 

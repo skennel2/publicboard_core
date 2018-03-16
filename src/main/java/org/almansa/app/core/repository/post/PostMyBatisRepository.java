@@ -14,15 +14,13 @@ import org.springframework.stereotype.Component;
 public class PostMyBatisRepository implements PostRepository{
     
     private SqlSession sqlSession;
-    private DateToStringTypeConverter dateToStringTypeConverter;
     
     private final String namespace = "POST_MAPPER.";
 
     @Autowired
-    public PostMyBatisRepository(SqlSession sqlSession, DateToStringTypeConverter dateToStringTypeConverter) {
+    public PostMyBatisRepository(SqlSession sqlSession) {
         super();
         this.sqlSession = sqlSession;
-        this.dateToStringTypeConverter = dateToStringTypeConverter;
     }
 
     @Override
@@ -43,18 +41,33 @@ public class PostMyBatisRepository implements PostRepository{
 
     @Override
     public void update(Post target) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        String statementId = "";
+        
         if(target.getId() == null) {
-            Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("NAME", target.getName());
-            parameters.put("CREATION_DATE", target.getCreationDate()); //dateToStringTypeConverter.convert(target.getCreationDate()));
-            parameters.put("MODIFIED_DATE", target.getCreationDate());//dateToStringTypeConverter.convert(target.getCreationDate()));
+            parameters.put("CREATION_DATE", target.getCreationDate());
+            parameters.put("MODIFIED_DATE", target.getCreationDate());
             parameters.put("CONTENTS", target.getContents());
             parameters.put("BOARD_ID", target.getOwnerBoardInfomation().getOwnerBoardKey());
             parameters.put("MEMBER_ID", target.getWriterInfomation().getWriterId());
             
-            int cnt =  sqlSession.update(namespace + "insert", parameters);
-            System.out.println(cnt);
+            statementId = "insert"; 
+        }else {
+            parameters.put("ID", target.getId());
+            parameters.put("NAME", target.getName());
+            parameters.put("CREATION_DATE", target.getCreationDate()); 
+            parameters.put("MODIFIED_DATE", target.getCreationDate());
+            parameters.put("CONTENTS", target.getContents());
+            parameters.put("BOARD_ID", target.getOwnerBoardInfomation().getOwnerBoardKey());
+            parameters.put("MEMBER_ID", target.getWriterInfomation().getWriterId());
+            parameters.put("CLICK_CNT", target.getClickCount());    
+            
+            statementId = "update"; 
         }
+        
+        int cnt =  sqlSession.update(namespace + statementId, parameters);
+        System.out.println(cnt);        
     }
 
     @Override

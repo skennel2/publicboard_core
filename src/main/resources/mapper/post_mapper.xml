@@ -105,6 +105,18 @@
 		  #{MEMBER_ID}, 
 		  0
 		)
+    </insert>  
+    
+    <insert id="update" parameterType="hashmap">
+        UPDATE POST
+           SET NAME = #{NAME},
+               CREATION_DATE = #{CREATION_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler}, 
+               MODIFIED_DATE = #{MODIFIED_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler}, 
+               CONTENTS = #{CONTENTS}, 
+               BOARD_ID = #{BOARD_ID}, 
+               MEMBER_ID = #{MEMBER_ID}, 
+               CLICK_CNT = #{CLICK_CNT}
+         WHERE ID = #{ID}
     </insert>    
   
 </mapper>

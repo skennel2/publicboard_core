@@ -38,6 +38,11 @@
                IS_ADMIN
           FROM MEMBER
          WHERE LOGIN_ID = #{loginId}
-    </select>    
+    </select> 
+       
+    <insert id="insert" parameterType="hashmap">
+         INSERT INTO MEMBER(LOGIN_ID, PASSWORD, IS_ADMIN)
+         VALUES(#{LOGIN_ID}, #{PASSWORD}, #{IS_ADMIN})
+    </insert>           
     
 </mapper>
