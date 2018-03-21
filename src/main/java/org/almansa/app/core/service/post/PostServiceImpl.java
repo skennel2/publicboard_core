@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.almansa.app.core.OwnerBoardInfomationImpl;
-import org.almansa.app.core.WriterInfomationImpl;
+import org.almansa.app.core.MemberDefaultInfomationImpl;
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.post.DefaultTextPost;
@@ -40,7 +40,7 @@ public class PostServiceImpl extends ServiceBase implements PostService {
         verifyNotNull(board);
 
         OwnerBoardInfomationImpl boardInfo = new OwnerBoardInfomationImpl(board.getId());
-        WriterInfomationImpl writerInfo = new WriterInfomationImpl(member.getId(), member.getLoginId());
+        MemberDefaultInfomationImpl writerInfo = new MemberDefaultInfomationImpl(member.getId(), member.getLoginId());
 
         Post post = new DefaultTextPost(
                 name, 
@@ -95,6 +95,11 @@ public class PostServiceImpl extends ServiceBase implements PostService {
     }
 
     @Override
+    public List<Post> getAll() {
+        return postRepo.getAll();
+    }
+    
+    @Override
     public void deletePost(final Long userId, final Long postId) {
         final Post post = postRepo.getById(postId);
 
@@ -103,10 +108,5 @@ public class PostServiceImpl extends ServiceBase implements PostService {
                 postRepo.delete(postId);
             }
         }
-    }
-
-    @Override
-    public List<Post> getAll() {
-        return postRepo.getAll();
     }
 }

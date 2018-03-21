@@ -50,7 +50,7 @@ public class PostMyBatisRepository implements PostRepository{
             parameters.put("MODIFIED_DATE", target.getCreationDate());
             parameters.put("CONTENTS", target.getContents());
             parameters.put("BOARD_ID", target.getOwnerBoardInfomation().getOwnerBoardKey());
-            parameters.put("MEMBER_ID", target.getWriterInfomation().getWriterId());
+            parameters.put("MEMBER_ID", target.getWriterInfomation().getMemberId());
             
             statementId = "insert"; 
         }else {
@@ -60,7 +60,7 @@ public class PostMyBatisRepository implements PostRepository{
             parameters.put("MODIFIED_DATE", target.getCreationDate());
             parameters.put("CONTENTS", target.getContents());
             parameters.put("BOARD_ID", target.getOwnerBoardInfomation().getOwnerBoardKey());
-            parameters.put("MEMBER_ID", target.getWriterInfomation().getWriterId());
+            parameters.put("MEMBER_ID", target.getWriterInfomation().getMemberId());
             parameters.put("CLICK_CNT", target.getClickCount());    
             
             statementId = "update"; 

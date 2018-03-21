@@ -3,7 +3,7 @@ package org.almansa.app.core.entity.post;
 import java.util.Date;
 
 import org.almansa.app.core.OwnerBoardInfomation;
-import org.almansa.app.core.WriterInfomation;
+import org.almansa.app.core.MemberDefaultInfomation;
 
 public class DefaultTextPost implements Post {
 
@@ -13,12 +13,12 @@ public class DefaultTextPost implements Post {
     private Date modifyDate;
     private String contents;
     private OwnerBoardInfomation ownerBoardInfomation;
-    private WriterInfomation writerInfomation;
+    private MemberDefaultInfomation writerInfomation;
 
     private int clickCount;
 
     public DefaultTextPost(String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, Integer clickCount) {
+            OwnerBoardInfomation ownerBoardInfomation, MemberDefaultInfomation writerInfomation, Integer clickCount) {
         super();
         this.name = name;
         this.creationDate = creationDate;
@@ -30,7 +30,7 @@ public class DefaultTextPost implements Post {
     }
 
     public DefaultTextPost(Long id, String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, WriterInfomation writerInfomation, Integer clickCount) {
+            OwnerBoardInfomation ownerBoardInfomation, MemberDefaultInfomation writerInfomation, Integer clickCount) {
         super();
         this.id = id;
         this.name = name;
@@ -98,7 +98,7 @@ public class DefaultTextPost implements Post {
     }
 
     @Override
-    public WriterInfomation getWriterInfomation() {
+    public MemberDefaultInfomation getWriterInfomation() {
         return writerInfomation;
     }
 
@@ -109,19 +109,19 @@ public class DefaultTextPost implements Post {
 
     @Override
     public void increaseClickCount(long clickUserId) {
-        if (clickUserId != writerInfomation.getWriterId()) {
+        if (clickUserId != writerInfomation.getMemberId()) {
             this.clickCount++;
         }
     }
 
     @Override
     public boolean isPossibleDelete(long userId) {
-        return userId == this.writerInfomation.getWriterId();
+        return userId == this.writerInfomation.getMemberId();
     }
 
     @Override
     public boolean isPossibleModify(long userId) {
-        return userId == this.writerInfomation.getWriterId();
+        return userId == this.writerInfomation.getMemberId();
     }
 
     @Override

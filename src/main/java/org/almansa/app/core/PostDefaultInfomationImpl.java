@@ -1,16 +1,16 @@
 package org.almansa.app.core;
 
-public class OwnerPostInfomationImpl implements OwnerPostInfomation {
+public class PostDefaultInfomationImpl implements PostDefaultInfomation {
 
     private Long ownerBoardKey;
 
-    public OwnerPostInfomationImpl(Long ownerBoardKey) {
+    public PostDefaultInfomationImpl(Long ownerBoardKey) {
         super();
         this.ownerBoardKey = ownerBoardKey;
     }
 
     @Override
-    public long getOwnerPostKey() {
+    public long getPostId() {
         return ownerBoardKey;
     }
 

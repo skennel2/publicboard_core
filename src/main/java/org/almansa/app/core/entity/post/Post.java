@@ -7,13 +7,13 @@ import org.almansa.app.core.Entity;
 import org.almansa.app.core.ModifiedDateRecordable;
 import org.almansa.app.core.OwnerBoardInfomation;
 import org.almansa.app.core.WritableTextContentsContainable;
-import org.almansa.app.core.WriterInfomation;
+import org.almansa.app.core.MemberDefaultInfomation;
 
 public interface Post extends Entity<Long>, ChangableNamed, ClickCountable, WritableTextContentsContainable,
         CreationDateRecordable, ModifiedDateRecordable {
     OwnerBoardInfomation getOwnerBoardInfomation();
 
-    WriterInfomation getWriterInfomation();
+    MemberDefaultInfomation getWriterInfomation();
 
     boolean isPossibleDelete(long userId);
 

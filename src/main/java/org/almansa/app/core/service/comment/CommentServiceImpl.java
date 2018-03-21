@@ -3,10 +3,10 @@ package org.almansa.app.core.service.comment;
 import java.util.Date;
 import java.util.List;
 
-import org.almansa.app.core.OwnerPostInfomation;
-import org.almansa.app.core.OwnerPostInfomationImpl;
-import org.almansa.app.core.WriterInfomation;
-import org.almansa.app.core.WriterInfomationImpl;
+import org.almansa.app.core.PostDefaultInfomation;
+import org.almansa.app.core.PostDefaultInfomationImpl;
+import org.almansa.app.core.MemberDefaultInfomation;
+import org.almansa.app.core.MemberDefaultInfomationImpl;
 import org.almansa.app.core.entity.comment.Comment;
 import org.almansa.app.core.entity.comment.DefaultTextComment;
 import org.almansa.app.core.entity.member.Member;
@@ -44,8 +44,8 @@ public class CommentServiceImpl extends ServiceBase implements CommentService{
         verifyNotNull(member);
         verifyNotNull(post);
         
-        WriterInfomation writerInfomation = new WriterInfomationImpl(member.getId(), member.getLoginId());
-        OwnerPostInfomation postInfomation = new OwnerPostInfomationImpl(post.getId());
+        MemberDefaultInfomation writerInfomation = new MemberDefaultInfomationImpl(member.getId(), member.getLoginId());
+        PostDefaultInfomation postInfomation = new PostDefaultInfomationImpl(post.getId());
         
         Comment newComment = new DefaultTextComment(new Date(), contents, postInfomation, writerInfomation);
         

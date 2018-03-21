@@ -2,19 +2,19 @@ package org.almansa.app.core.entity.comment;
 
 import java.util.Date;
 
-import org.almansa.app.core.OwnerPostInfomation;
-import org.almansa.app.core.WriterInfomation;
+import org.almansa.app.core.PostDefaultInfomation;
+import org.almansa.app.core.MemberDefaultInfomation;
 
 public class DefaultTextComment implements Comment {
 
     private Long id;
     private Date creationDate;
     private String contents;
-    private OwnerPostInfomation ownerPostInfomation;
-    private WriterInfomation writerInfomation;
+    private PostDefaultInfomation ownerPostInfomation;
+    private MemberDefaultInfomation writerInfomation;
 
-    public DefaultTextComment(Long id, Date creationDate, String contents, OwnerPostInfomation ownerPostInfomation,
-            WriterInfomation writerInfomation) {
+    public DefaultTextComment(Long id, Date creationDate, String contents, PostDefaultInfomation ownerPostInfomation,
+            MemberDefaultInfomation writerInfomation) {
         super();
         this.id = id;
         this.creationDate = creationDate;
@@ -23,8 +23,8 @@ public class DefaultTextComment implements Comment {
         this.writerInfomation = writerInfomation;
     }
 
-    public DefaultTextComment(Date creationDate, String contents, OwnerPostInfomation ownerPostInfomation,
-            WriterInfomation writerInfomation) {
+    public DefaultTextComment(Date creationDate, String contents, PostDefaultInfomation ownerPostInfomation,
+            MemberDefaultInfomation writerInfomation) {
         super();
         this.creationDate = creationDate;
         this.contents = contents;
@@ -63,18 +63,18 @@ public class DefaultTextComment implements Comment {
     }
 
     @Override
-    public WriterInfomation getWriterInfomation() {
+    public MemberDefaultInfomation getWriterInfomation() {
         return writerInfomation;
     }
 
     @Override
-    public OwnerPostInfomation getOwnerPostInfomation() {
+    public PostDefaultInfomation getOwnerPostInfomation() {
         return ownerPostInfomation;
     }
 
     @Override
     public boolean isPossibleToDelete(Long userId) {        
-        return userId.equals(writerInfomation.getWriterId());
+        return userId.equals(writerInfomation.getMemberId());
     }
 
     @Override
