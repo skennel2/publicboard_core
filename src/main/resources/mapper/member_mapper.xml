@@ -5,7 +5,7 @@
   
 <mapper namespace="MEMBER_MAPPER">
     
-    <resultMap type="org.almansa.app.core.member.SimpleMember" id="memberMapper">
+    <resultMap type="org.almansa.app.core.entity.member.SimpleMember" id="memberMapper">
         <constructor>
             <idArg javaType="Long" column="ID"/>
             <arg javaType="String" column="LOGIN_ID"/>

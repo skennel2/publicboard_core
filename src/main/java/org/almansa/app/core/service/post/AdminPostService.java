@@ -27,19 +27,6 @@ public class AdminPostService{
         this.adminPostCacheStorage = adminPostCacheStorage;
     }
 
-    //@PostConstruct
-    private void updateCache() {
-        adminPostCacheStorage.clear();     
-        List<Member> admins = memberRepository.getAdminMembers();
-        
-        for(Member admin : admins) {
-            List<Post> list = postRepository.getByWriterId(admin.getId());
-            for (Post post : list) {
-                adminPostCacheStorage.store(post.getId(), post);
-            }
-        }       
-    }
-    
     public Post getById(Long id){
         return adminPostCacheStorage.get(id);
     }    

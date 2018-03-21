@@ -3,18 +3,22 @@ package org.almansa.app.core.entity.comment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecommendRecords{
+import org.almansa.app.core.Immutable;
+import org.almansa.app.core.MemberDefaultInfomation;
+
+public class RecommendRecordList implements Immutable{
     List<RecommendRecord> recommends;
            
-    public RecommendRecords(List<RecommendRecord> recommends) {
+    public RecommendRecordList(List<RecommendRecord> recommends) {
         super();
         if(recommends == null){
             this.recommends = new ArrayList<RecommendRecord>();
+        }else {
+            this.recommends = recommends;
         }
-        this.recommends = recommends;
     }
     
-    public RecommendRecords() {
+    public RecommendRecordList() {
         super();
         this.recommends = new ArrayList<RecommendRecord>();
     }
@@ -33,15 +37,16 @@ public class RecommendRecords{
         return true;
     }
     
-    public void recommend(RecommendRecord record) {
-        if(!isAbleToRecommend(record.getRecommender().getMemberId())) {
-            throw new RuntimeException("duplicated recommend");
-        }
-        
-        recommends.add(record);
-    }
+    public boolean isAbleToRecommend(MemberDefaultInfomation member) {
+        return isAbleToRecommend(member.getMemberId());
+    }    
     
     public int getRecommendCount() {
         return recommends.size();
     }
+
+    @Override
+    public String toString() {
+        return "RecommendRecordList [recommends=" + recommends + "]";
+    }       
 }

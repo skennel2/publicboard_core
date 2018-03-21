@@ -23,8 +23,7 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
     public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = memberRepo.getByLoginId(loginId);
         
-        if(member != null && member.getPassword().equals(password)) {
-            
+        if(member != null && member.getPassword().equals(password)) {            
             LoginMemberSessionModel sessionModel = new LoginMemberSessionModel();
             sessionModel.setId(member.getId());
             sessionModel.setLoginId(member.getLoginId());

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="POST_MAPPER">
-    <resultMap type="org.almansa.app.core.post.DefaultTextPost" id="postMapper">
+    <resultMap type="org.almansa.app.core.entity.post.DefaultTextPost" id="postMapper">
         <constructor>
             <idArg column="ID" javaType="java.lang.Long"/>
             <arg column="NAME" javaType="String"/>
@@ -12,7 +12,7 @@
             <arg column="MODIFIED_DATE" javaType="Date" typeHandler="org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler"/>
             <arg column="CONTENTS" javaType="String"/>
             <arg resultMap="boardInfoMapper" javaType="org.almansa.app.core.OwnerBoardInfomation"/>            
-            <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.WriterInfomation"/>
+            <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.MemberDefaultInfomation"/>
             <arg column="CLICK_CNT" javaType="java.lang.Integer"/> 
         </constructor>
     </resultMap>
@@ -23,7 +23,7 @@
         </constructor>        
     </resultMap>
     
-     <resultMap type="org.almansa.app.core.WriterInfomationImpl" id="writerInfoMapper">        
+     <resultMap type="org.almansa.app.core.MemberDefaultInfomationImpl" id="writerInfoMapper">        
         <constructor>
             <arg column="MID" javaType="java.lang.Long" />
             <arg column="LOGIN_ID" javaType="String"/>

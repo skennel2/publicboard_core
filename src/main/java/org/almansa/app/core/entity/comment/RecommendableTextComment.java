@@ -8,10 +8,10 @@ import org.almansa.app.core.MemberDefaultInfomation;
 
 public class RecommendableTextComment extends DefaultTextComment implements Recommendable {
 
-    private RecommendRecords recommends;
+    private RecommendRecordList recommends;
     
     public RecommendableTextComment(Date creationDate, String contents, PostDefaultInfomation ownerPostInfomation,
-            MemberDefaultInfomation writerInfomation, RecommendRecords recommends) {
+            MemberDefaultInfomation writerInfomation, RecommendRecordList recommends) {
         super(creationDate, contents, ownerPostInfomation, writerInfomation);
         this.recommends = recommends;
     }
@@ -22,11 +22,7 @@ public class RecommendableTextComment extends DefaultTextComment implements Reco
     }
 
     @Override
-    public void recommend(MemberDefaultInfomation memberInfomation) {
-        if(recommends.isAbleToRecommend(memberInfomation.getMemberId())) {
-            
-            RecommendRecord record = new RecommendRecord(memberInfomation, new Date());
-            recommends.recommend(record);
-        }
+    public boolean isAbleToRecommend(Long memberId) {
+        return recommends.isAbleToRecommend(memberId);
     }
 }
