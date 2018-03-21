@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.almansa.app.core.board.Board;
-import org.almansa.app.core.board.DefaultTextBoard;
+import org.almansa.app.core.entity.board.Board;
+import org.almansa.app.core.entity.board.DefaultTextBoard;
 import org.springframework.stereotype.Component;
 
 @Component

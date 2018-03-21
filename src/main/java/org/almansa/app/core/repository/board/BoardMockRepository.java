@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.almansa.app.core.board.Board;
-import org.almansa.app.core.board.DefaultTextBoard;
+import org.almansa.app.core.entity.board.Board;
+import org.almansa.app.core.entity.board.DefaultTextBoard;
 import org.springframework.stereotype.Component;
 
 @Component

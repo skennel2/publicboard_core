@@ -1,4 +1,4 @@
-package org.almansa.app.core.comment;
+package org.almansa.app.core.entity.comment;
 
 import org.almansa.app.core.CreationDateRecordable;
 import org.almansa.app.core.Entity;

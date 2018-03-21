@@ -1,4 +1,4 @@
-package org.almansa.app.core.member;
+package org.almansa.app.core.entity.member;
 
 import org.almansa.app.core.Entity;
 

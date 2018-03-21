@@ -2,7 +2,7 @@ package org.almansa.app.core.service.post;
 
 import java.util.List;
 
-import org.almansa.app.core.post.Post;
+import org.almansa.app.core.entity.post.Post;
 
 public interface PostService {
 

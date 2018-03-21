@@ -1,7 +1,7 @@
 package org.almansa.app.core.service.member;
 
-import org.almansa.app.core.member.Member;
-import org.almansa.app.core.member.SimpleMember;
+import org.almansa.app.core.entity.member.Member;
+import org.almansa.app.core.entity.member.SimpleMember;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.service.ServiceBase;
 import org.almansa.app.core.service.dto.LoginMemberSessionModel;

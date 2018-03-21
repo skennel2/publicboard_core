@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.almansa.app.core.comment.Comment;
+import org.almansa.app.core.entity.comment.Comment;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class CommentMyBatisRespository extends SqlSessionDaoSupport implements CommentRepository{

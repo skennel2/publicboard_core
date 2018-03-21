@@ -1,4 +1,4 @@
-package org.almansa.app.core.board;
+package org.almansa.app.core.entity.board;
 
 import java.util.List;
 

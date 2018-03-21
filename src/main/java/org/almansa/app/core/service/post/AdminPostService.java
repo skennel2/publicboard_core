@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.almansa.app.core.cache.adminpost.AdminPostCacheStorage;
-import org.almansa.app.core.member.Member;
-import org.almansa.app.core.post.Post;
+import org.almansa.app.core.entity.member.Member;
+import org.almansa.app.core.entity.post.Post;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;

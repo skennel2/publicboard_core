@@ -3,7 +3,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.almansa.app.core.board.DefaultTextBoard;
+import org.almansa.app.core.entity.board.DefaultTextBoard;
 import org.junit.Test;
 
 public class BoardTest {

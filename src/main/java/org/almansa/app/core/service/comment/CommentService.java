@@ -2,7 +2,7 @@ package org.almansa.app.core.service.comment;
 
 import java.util.List;
 
-import org.almansa.app.core.comment.Comment;
+import org.almansa.app.core.entity.comment.Comment;
 
 public interface CommentService {
 

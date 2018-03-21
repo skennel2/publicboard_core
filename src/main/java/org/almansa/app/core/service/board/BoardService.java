@@ -2,7 +2,7 @@ package org.almansa.app.core.service.board;
 
 import java.util.List;
 
-import org.almansa.app.core.board.Board;
+import org.almansa.app.core.entity.board.Board;
 
 public interface BoardService {
     List<Board> getBoardList();

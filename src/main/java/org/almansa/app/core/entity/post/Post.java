@@ -1,4 +1,4 @@
-package org.almansa.app.core.post;
+package org.almansa.app.core.entity.post;
 
 import org.almansa.app.core.ChangableNamed;
 import org.almansa.app.core.ClickCountable;

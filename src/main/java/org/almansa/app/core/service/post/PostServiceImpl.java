@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.almansa.app.core.OwnerBoardInfomationImpl;
 import org.almansa.app.core.WriterInfomationImpl;
-import org.almansa.app.core.board.Board;
-import org.almansa.app.core.member.Member;
-import org.almansa.app.core.post.DefaultTextPost;
-import org.almansa.app.core.post.Post;
+import org.almansa.app.core.entity.board.Board;
+import org.almansa.app.core.entity.member.Member;
+import org.almansa.app.core.entity.post.DefaultTextPost;
+import org.almansa.app.core.entity.post.Post;
 import org.almansa.app.core.repository.board.BoardRepository;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
