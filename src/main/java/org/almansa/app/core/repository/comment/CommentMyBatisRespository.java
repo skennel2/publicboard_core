@@ -9,7 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class CommentMyBatisRespository extends SqlSessionDaoSupport implements CommentRepository{
     
-    private final String mapperNamespace = "COMMENT.";
+    private final String mapperNamespace = "COMMENT_MAPPER.";
     
     @Override
     public Comment getById(Long id) {       

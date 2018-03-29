@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="COMMENT_MAPPER">
+    <resultMap type="org.almansa.app.core.entity.comment.DefaultTextComment" id="commentMapper">
+        
+    </resultMap>
+    
+    <select id="getByPostId" parameterType="long" resultMap="commentMapper">
+        SELECT A.ID, 
+               A.POST_ID,
+               A.MEMBER_ID,
+               A.WRITE_DATE,
+               A.CONTENTS,
+               C.LOGIN_ID
+          FROM COMMENT AS A
+          LEFT JOIN POST AS B ON A.POST_ID = B.ID
+          LEFT JOIN MEMBER AS C ON A.MEMBER_ID = C.ID
+    </select>
+</mapper>
