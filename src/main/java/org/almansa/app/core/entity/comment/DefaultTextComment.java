@@ -34,7 +34,7 @@ public class DefaultTextComment implements Comment {
 
     @Override
     public void setId(Long id) {
-        this.id = id;
+        this.id = id;        
     }
 
     @Override
