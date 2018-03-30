@@ -6,18 +6,40 @@
   
 <mapper namespace="COMMENT_MAPPER">
     <resultMap type="org.almansa.app.core.entity.comment.DefaultTextComment" id="commentMapper">
-        
+        <constructor>
+            <idArg column="ID" javaType="java.lang.Long"/>
+            <arg column="WRITE_DATE" javaType="Date" typeHandler="org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler"/>
+            <arg column="CONTENTS" javaType="String"/>
+            <arg resultMap="postInfoMapper" javaType="org.almansa.app.core.PostDefaultInfomation"/>
+            <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.MemberDefaultInfomation"/>
+        </constructor>
     </resultMap>
+    
+    <resultMap type="org.almansa.app.core.PostDefaultInfomationImpl" id="postInfoMapper">        
+        <constructor>
+            <arg column="POST_ID" javaType="java.lang.Long" />
+        </constructor>        
+    </resultMap>       
+    
+     <resultMap type="org.almansa.app.core.MemberDefaultInfomationImpl" id="writerInfoMapper">        
+        <constructor>
+            <arg column="MEMBER_ID" javaType="java.lang.Long" />
+            <arg column="MEMBER_LOGIN_ID" javaType="String"/>
+        </constructor>        
+    </resultMap>    
     
     <select id="getByPostId" parameterType="long" resultMap="commentMapper">
         SELECT A.ID, 
                A.POST_ID,
-               A.MEMBER_ID,
+               B.NAME AS POST_NAME,
+               A.MEMBER_ID,               
+               C.LOGIN_ID AS MEMBER_LOGIN_ID,
                A.WRITE_DATE,
                A.CONTENTS,
                C.LOGIN_ID
           FROM COMMENT AS A
           LEFT JOIN POST AS B ON A.POST_ID = B.ID
           LEFT JOIN MEMBER AS C ON A.MEMBER_ID = C.ID
+          WHERE A.POST_ID = #{postId}
     </select>
 </mapper>
