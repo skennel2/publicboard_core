@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  
 <mapper namespace="COMMENT_MAPPER">
     <resultMap type="org.almansa.app.core.entity.comment.DefaultTextComment" id="commentMapper">
         <constructor>
@@ -41,5 +40,13 @@
           LEFT JOIN POST AS B ON A.POST_ID = B.ID
           LEFT JOIN MEMBER AS C ON A.MEMBER_ID = C.ID
           WHERE A.POST_ID = #{postId}
+          ORDER BY WRITE_DATE ASC
     </select>
+    
+    <insert id="insert" parameterType="hashmap">
+        INSERT INTO COMMENT
+        (POST_ID, MEMBER_ID, CONTENTS, WRITE_DATE)
+        VALUES
+        (#{POST_ID}, #{MEMBER_ID}, #{CONTENTS}, #{WRITE_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler})
+    </insert>    
 </mapper>
