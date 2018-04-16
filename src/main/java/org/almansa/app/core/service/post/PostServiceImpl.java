@@ -3,8 +3,8 @@ package org.almansa.app.core.service.post;
 import java.util.Date;
 import java.util.List;
 
-import org.almansa.app.core.OwnerBoardInfomationImpl;
 import org.almansa.app.core.MemberDefaultInfomationImpl;
+import org.almansa.app.core.OwnerBoardInfomationImpl;
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.post.DefaultTextPost;

@@ -2,9 +2,9 @@ package org.almansa.app.core.entity.comment;
 
 import java.util.Date;
 
+import org.almansa.app.core.MemberDefaultInfomation;
 import org.almansa.app.core.PostDefaultInfomation;
 import org.almansa.app.core.Recommendable;
-import org.almansa.app.core.MemberDefaultInfomation;
 
 public class RecommendableTextComment extends DefaultTextComment implements Recommendable {
 

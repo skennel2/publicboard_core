@@ -2,7 +2,6 @@ package org.almansa.app.core.entity.post;
 
 import java.util.Date;
 
-import org.almansa.app.core.ContentsContainable;
 import org.almansa.app.core.MemberDefaultInfomation;
 import org.almansa.app.core.OwnerBoardInfomation;
 

@@ -1,7 +1,6 @@
 package org.almansa.app.core.entity.comment;
 
 import java.util.Date;
-import java.util.function.Consumer;
 
 import org.almansa.app.core.Immutable;
 import org.almansa.app.core.MemberDefaultInfomation;

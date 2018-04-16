@@ -2,8 +2,8 @@ package org.almansa.app.core.entity.post;
 
 import java.util.Date;
 
-import org.almansa.app.core.OwnerBoardInfomation;
 import org.almansa.app.core.MemberDefaultInfomation;
+import org.almansa.app.core.OwnerBoardInfomation;
 
 public class DefaultTextPost implements Post {
 
