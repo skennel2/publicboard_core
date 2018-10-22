@@ -3,20 +3,19 @@ package org.almansa.app.core.entity.comment;
 import java.util.Date;
 
 import org.almansa.app.core.Immutable;
-import org.almansa.app.core.MemberDefaultInfomation;
 
 public class RecommendRecord implements Immutable{
-    MemberDefaultInfomation recommender;
+    Long recommenderId;
     Date recommendDate;
            
-    public RecommendRecord(MemberDefaultInfomation recommender, Date recommendDate) {
+    public RecommendRecord(Long recommenderId, Date recommendDate) {
         super();
-        this.recommender = recommender;
+        this.recommenderId = recommenderId;
         this.recommendDate = recommendDate;
     }
 
-    public MemberDefaultInfomation getRecommender() {
-        return recommender;
+    public Long getRecommenderId() {
+        return recommenderId;
     }
 
     public Date getRecommendDate() {

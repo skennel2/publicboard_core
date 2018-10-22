@@ -2,27 +2,25 @@ package org.almansa.app.core.entity.comment;
 
 import java.util.Date;
 
-import org.almansa.app.core.MemberDefaultInfomation;
-import org.almansa.app.core.PostDefaultInfomation;
 import org.almansa.app.core.Recommendable;
 
 public class RecommendableTextComment extends DefaultTextComment implements Recommendable {
 
-    private RecommendRecordList recommends;
-    
-    public RecommendableTextComment(Date creationDate, String contents, PostDefaultInfomation ownerPostInfomation,
-            MemberDefaultInfomation writerInfomation, RecommendRecordList recommends) {
-        super(creationDate, contents, ownerPostInfomation, writerInfomation);
-        this.recommends = recommends;
-    }
+	private RecommendRecordList recommends;
 
-    @Override
-    public int getRecommendCount() {        
-        return recommends.getRecommendCount();
-    }
+	public RecommendableTextComment(Date creationDate, String contents, Long ownerPostId, Long writerId,
+			RecommendRecordList recommends) {
+		super(creationDate, contents, ownerPostId, writerId);
+		this.recommends = recommends;
+	}
 
-    @Override
-    public boolean isAbleToRecommend(Long memberId) {
-        return recommends.isAbleToRecommend(memberId);
-    }
+	@Override
+	public int getRecommendCount() {
+		return recommends.getRecommendCount();
+	}
+
+	@Override
+	public boolean isAbleToRecommend(Long memberId) {
+		return recommends.isAbleToRecommend(memberId);
+	}
 }

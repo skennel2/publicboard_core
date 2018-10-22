@@ -2,8 +2,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
-import org.almansa.app.core.MemberDefaultInfomationImpl;
-import org.almansa.app.core.PostDefaultInfomationImpl;
 import org.almansa.app.core.entity.comment.RecommendRecordList;
 import org.almansa.app.core.entity.comment.RecommendableTextComment;
 import org.junit.Test;
@@ -14,10 +12,10 @@ public class RecommendTextCommentTest {
     public void test() {
         
         RecommendRecordList recommends = new RecommendRecordList();
-        PostDefaultInfomationImpl pdi = new PostDefaultInfomationImpl(new Long(1));
-        MemberDefaultInfomationImpl mdi = new MemberDefaultInfomationImpl(new Long(1), "skennel");
+        Long postId = new Long(1);
+        Long memberId = new Long(1);
         
-        RecommendableTextComment rtc = new RecommendableTextComment(new Date(), "abc", pdi, mdi, recommends);
+        RecommendableTextComment rtc = new RecommendableTextComment(new Date(), "abc", postId, memberId, recommends);
                 
         assertEquals("abc", rtc.getContents());
         

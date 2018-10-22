@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.almansa.app.core.Immutable;
-import org.almansa.app.core.MemberDefaultInfomation;
 
 public class RecommendRecordList implements Immutable{
     List<RecommendRecord> recommends;
@@ -29,17 +28,13 @@ public class RecommendRecordList implements Immutable{
         }
         
         for (RecommendRecord recommendRecord : recommends) {
-            if(recommendRecord.getRecommender().getMemberId() == memberId) {
+            if(recommendRecord.getRecommenderId() == memberId) {
                 return false;
             }
         }
         
         return true;
     }
-    
-    public boolean isAbleToRecommend(MemberDefaultInfomation member) {
-        return isAbleToRecommend(member.getMemberId());
-    }    
     
     public int getRecommendCount() {
         return recommends.size();

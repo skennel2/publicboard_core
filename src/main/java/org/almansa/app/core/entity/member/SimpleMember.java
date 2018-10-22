@@ -6,7 +6,7 @@ public class SimpleMember implements Member {
     private String loginId;
     private String password;
     
-    private boolean isAdmin;
+    private Boolean isAdmin;
 
     public SimpleMember(Long id, String loginId, String password, Boolean isAdmin) {
         super();
@@ -44,7 +44,7 @@ public class SimpleMember implements Member {
     }
 
     @Override
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return isAdmin;
     }
     

@@ -3,8 +3,6 @@ package org.almansa.app.core.service.post;
 import java.util.Date;
 import java.util.List;
 
-import org.almansa.app.core.MemberDefaultInfomationImpl;
-import org.almansa.app.core.OwnerBoardInfomationImpl;
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.post.DefaultTextPost;
@@ -39,16 +37,13 @@ public class PostServiceImpl extends ServiceBase implements PostService {
         verifyNotNull(member);
         verifyNotNull(board);
 
-        OwnerBoardInfomationImpl boardInfo = new OwnerBoardInfomationImpl(board.getId());
-        MemberDefaultInfomationImpl writerInfo = new MemberDefaultInfomationImpl(member.getId(), member.getLoginId());
-
         Post post = new DefaultTextPost(
                 name, 
                 new Date(), 
                 new Date(), 
                 contents, 
-                boardInfo, 
-                writerInfo,
+                board.getId(), 
+                member.getId(),
                 0);
 
         postRepo.update(post);

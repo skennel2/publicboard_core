@@ -2,9 +2,6 @@ package org.almansa.app.core.entity.post;
 
 import java.util.Date;
 
-import org.almansa.app.core.MemberDefaultInfomation;
-import org.almansa.app.core.OwnerBoardInfomation;
-
 public class DefaultTextPost implements Post {
 
     private Long id;
@@ -12,33 +9,33 @@ public class DefaultTextPost implements Post {
     private Date creationDate;
     private Date modifyDate;
     private String contents;
-    private OwnerBoardInfomation ownerBoardInfomation;
-    private MemberDefaultInfomation writerInfomation;
+    private Long ownerBoardId;
+    private Long writerId;
 
     private int clickCount;
 
     public DefaultTextPost(String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, MemberDefaultInfomation writerInfomation, Integer clickCount) {
+    		Long ownerBoardId, Long writerId, Integer clickCount) {
         super();
         this.name = name;
         this.creationDate = creationDate;
         this.modifyDate = modifyDate;
         this.contents = contents;
-        this.ownerBoardInfomation = ownerBoardInfomation;
-        this.writerInfomation = writerInfomation;
+        this.ownerBoardId = ownerBoardId;
+        this.writerId = writerId;
         this.clickCount = clickCount;
     }
 
     public DefaultTextPost(Long id, String name, Date creationDate, Date modifyDate, String contents,
-            OwnerBoardInfomation ownerBoardInfomation, MemberDefaultInfomation writerInfomation, Integer clickCount) {
+    		Long ownerBoardId, Long writerId, Integer clickCount) {
         super();
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
         this.modifyDate = modifyDate;
         this.contents = contents;
-        this.ownerBoardInfomation = ownerBoardInfomation;
-        this.writerInfomation = writerInfomation;
+        this.ownerBoardId = ownerBoardId;
+        this.writerId = writerId;
         this.clickCount = clickCount;
     }    
 
@@ -82,12 +79,24 @@ public class DefaultTextPost implements Post {
         this.modifyDate = newDate;
     }
 
-    @Override
-    public OwnerBoardInfomation getOwnerBoardInfomation() {
-        return ownerBoardInfomation;
-    }
+    public Long getOwnerBoardId() {
+		return ownerBoardId;
+	}
 
-    @Override
+	public void setOwnerBoardId(Long ownerBoardId) {
+		this.ownerBoardId = ownerBoardId;
+	}
+	
+	@Override
+	public Long getWriterId() {
+		return writerId;
+	}
+
+	public void setWriterId(Long writerId) {
+		this.writerId = writerId;
+	}
+
+	@Override
     public String getContents() {
         return contents;
     }
@@ -98,40 +107,35 @@ public class DefaultTextPost implements Post {
     }
 
     @Override
-    public MemberDefaultInfomation getWriterInfomation() {
-        return writerInfomation;
-    }
-
-    @Override
     public int getClickCount() {
         return clickCount;
     }
 
     @Override
-    public void increaseClickCount(long clickUserId) {
-        if (clickUserId != writerInfomation.getMemberId()) {
+    public void increaseClickCount(Long clickUserId) {
+        if (clickUserId != writerId) {
             this.clickCount++;
         }
     }
 
     @Override
-    public boolean isPossibleDelete(long userId) {
-        return userId == this.writerInfomation.getMemberId();
+    public boolean isPossibleDelete(Long userId) {
+        return userId == writerId;
     }
 
     @Override
-    public boolean isPossibleModify(long userId) {
-        return userId == this.writerInfomation.getMemberId();
+    public boolean isPossibleModify(Long userId) {
+        return userId == this.writerId;
     }
 
     @Override
-    public String toString() {
-        return "DefaultTextPost [id=" + id + ", name=" + name + ", creationDate=" + creationDate + ", modifyDate="
-                + modifyDate + ", contents=" + contents + ", ownerBoardInfomation=" + ownerBoardInfomation
-                + ", writerInfomation=" + writerInfomation + ", clickCount=" + clickCount + "]";
-    }
+	public String toString() {
+		return "DefaultTextPost [id=" + id + ", name=" + name + ", creationDate=" + creationDate + ", modifyDate="
+				+ modifyDate + ", contents=" + contents + ", ownerBoardId=" + ownerBoardId + ", writerId=" + writerId
+				+ ", clickCount=" + clickCount + "]";
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -154,5 +158,5 @@ public class DefaultTextPost implements Post {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }  
+    }
 }

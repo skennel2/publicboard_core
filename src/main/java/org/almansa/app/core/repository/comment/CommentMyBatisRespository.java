@@ -56,8 +56,8 @@ public class CommentMyBatisRespository implements CommentRepository{
     public void update(Comment target) {
        if(target.getId() == null) {           
            Map<String, Object> parameters = new HashMap<String, Object>();
-           parameters.put("POST_ID", target.getOwnerPostInfomation().getPostId());
-           parameters.put("MEMBER_ID", target.getWriterInfomation().getMemberId());
+           parameters.put("POST_ID", target.getOwnerPostId());
+           parameters.put("MEMBER_ID", target.getWriterId());
            parameters.put("CONTENTS", target.getContents());
            parameters.put("WRITE_DATE", target.getCreationDate());
            

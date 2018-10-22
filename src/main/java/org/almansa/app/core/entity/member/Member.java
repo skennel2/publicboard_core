@@ -7,5 +7,5 @@ public interface Member extends Entity<Long> {
 
     public String getPassword();
     
-    public boolean isAdmin();
+    public Boolean isAdmin();
 }
