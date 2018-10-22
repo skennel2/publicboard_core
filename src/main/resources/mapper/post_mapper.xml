@@ -8,26 +8,13 @@
         <constructor>
             <idArg column="ID" javaType="java.lang.Long"/>
             <arg column="NAME" javaType="String"/>
-            <arg column="CREATION_DATE" javaType="Date" typeHandler="org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler"/>
-            <arg column="MODIFIED_DATE" javaType="Date" typeHandler="org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler"/>
+            <arg column="CREATION_DATE" javaType="Date"/>
+            <arg column="MODIFIED_DATE" javaType="Date"/>
             <arg column="CONTENTS" javaType="String"/>
-            <arg resultMap="boardInfoMapper" javaType="org.almansa.app.core.OwnerBoardInfomation"/>            
-            <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.MemberDefaultInfomation"/>
+            <arg column="BID" javaType="java.lang.Long"/>            
+            <arg column="MID" javaType="java.lang.Long"/>
             <arg column="CLICK_CNT" javaType="java.lang.Integer"/> 
         </constructor>
-    </resultMap>
-    
-    <resultMap type="org.almansa.app.core.OwnerBoardInfomationImpl" id="boardInfoMapper" >        
-        <constructor>
-            <arg column="BID" javaType="java.lang.Long" />
-        </constructor>        
-    </resultMap>
-    
-     <resultMap type="org.almansa.app.core.MemberDefaultInfomationImpl" id="writerInfoMapper">        
-        <constructor>
-            <arg column="MID" javaType="java.lang.Long" />
-            <arg column="LOGIN_ID" javaType="String"/>
-        </constructor>        
     </resultMap>
     
     <select id="all" resultMap="postMapper">
@@ -44,8 +31,7 @@
                BOARD.NAME
           FROM POST 
           LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
-          LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
-         WHERE IFNULL(POST.IS_ADMIN, 'F') != 'T'    
+          LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID 
           ORDER BY POST.CREATION_DATE DESC
     </select> 
     
@@ -65,7 +51,6 @@
           LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
           LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
          WHERE POST.ID = #{id}
-           AND IFNULL(POST.IS_ADMIN, 'F') != "T"
     </select> 
 
     <select id="getByWriterId" resultMap="postMapper" parameterType="Long">
@@ -84,7 +69,6 @@
           LEFT JOIN MEMBER ON POST.MEMBER_ID = MEMBER.ID
           LEFT JOIN BOARD ON POST.BOARD_ID = BOARD.ID
          WHERE POST.MEMBER_ID = #{id}
-           AND IFNULL(POST.IS_ADMIN, 'F') != "T"
     </select> 
     
     <delete id="delete" parameterType="Long">
@@ -98,8 +82,8 @@
 		VALUES
 		(
 		  #{NAME}, 
-		  #{CREATION_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler}, 
-		  #{MODIFIED_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler}, 
+		  #{CREATION_DATE}, 
+		  #{MODIFIED_DATE}, 
 		  #{CONTENTS}, 
 		  #{BOARD_ID}, 
 		  #{MEMBER_ID}, 
@@ -110,8 +94,8 @@
     <insert id="update" parameterType="hashmap">
         UPDATE POST
            SET NAME = #{NAME},
-               CREATION_DATE = #{CREATION_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler}, 
-               MODIFIED_DATE = #{MODIFIED_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler}, 
+               CREATION_DATE = #{CREATION_DATE}, 
+               MODIFIED_DATE = #{MODIFIED_DATE}, 
                CONTENTS = #{CONTENTS}, 
                BOARD_ID = #{BOARD_ID}, 
                MEMBER_ID = #{MEMBER_ID}, 

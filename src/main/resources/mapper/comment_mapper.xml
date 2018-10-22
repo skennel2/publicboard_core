@@ -7,25 +7,12 @@
     <resultMap type="org.almansa.app.core.entity.comment.DefaultTextComment" id="commentMapper">
         <constructor>
             <idArg column="ID" javaType="java.lang.Long"/>
-            <arg column="WRITE_DATE" javaType="Date" typeHandler="org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler"/>
+            <arg column="WRITE_DATE" javaType="Date"/>
             <arg column="CONTENTS" javaType="String"/>
-            <arg resultMap="postInfoMapper" javaType="org.almansa.app.core.PostDefaultInfomation"/>
-            <arg resultMap="writerInfoMapper" javaType="org.almansa.app.core.MemberDefaultInfomation"/>
+            <arg column="POST_ID" javaType="java.lang.Long"/>
+            <arg column="MEMBER_ID" javaType="java.lang.Long"/>
         </constructor>
     </resultMap>
-    
-    <resultMap type="org.almansa.app.core.PostDefaultInfomationImpl" id="postInfoMapper">        
-        <constructor>
-            <arg column="POST_ID" javaType="java.lang.Long" />
-        </constructor>        
-    </resultMap>       
-    
-     <resultMap type="org.almansa.app.core.MemberDefaultInfomationImpl" id="writerInfoMapper">        
-        <constructor>
-            <arg column="MEMBER_ID" javaType="java.lang.Long" />
-            <arg column="MEMBER_LOGIN_ID" javaType="String"/>
-        </constructor>        
-    </resultMap>    
     
     <select id="getByPostId" parameterType="long" resultMap="commentMapper">
         SELECT A.ID, 
@@ -47,6 +34,6 @@
         INSERT INTO COMMENT
         (POST_ID, MEMBER_ID, CONTENTS, WRITE_DATE)
         VALUES
-        (#{POST_ID}, #{MEMBER_ID}, #{CONTENTS}, #{WRITE_DATE, typeHandler=org.almansa.app.core.typehandler.sqlite.SqliteDateTypeHandler})
+        (#{POST_ID}, #{MEMBER_ID}, #{CONTENTS}, #{WRITE_DATE})
     </insert>    
 </mapper>

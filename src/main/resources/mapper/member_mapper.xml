@@ -10,7 +10,7 @@
             <idArg javaType="Long" column="ID"/>
             <arg javaType="String" column="LOGIN_ID"/>
             <arg javaType="String" column="PASSWORD"/>
-            <arg javaType="boolean" column="IS_ADMIN" typeHandler="org.almansa.app.core.typehandler.sqlite.SqliteBooleanTypeHandler"/>
+            <arg javaType="Boolean" column="IS_ADMIN"/>
         </constructor>
     </resultMap>
     
