@@ -2,6 +2,7 @@ package org.almansa.app.core.entity.comment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.almansa.app.core.Immutable;
 
@@ -10,11 +11,8 @@ public class RecommendRecordList implements Immutable{
            
     public RecommendRecordList(List<RecommendRecord> recommends) {
         super();
-        if(recommends == null){
-            this.recommends = new ArrayList<RecommendRecord>();
-        }else {
-            this.recommends = recommends;
-        }
+                
+        this.recommends = recommends;
     }
     
     public RecommendRecordList() {
@@ -27,13 +25,10 @@ public class RecommendRecordList implements Immutable{
             return false;
         }
         
-        for (RecommendRecord recommendRecord : recommends) {
-            if(recommendRecord.getRecommenderId() == memberId) {
-                return false;
-            }
-        }
-        
-        return true;
+        return !recommends.stream()
+        	.filter((record)-> record.getRecommenderId().equals(memberId))
+        	.findFirst()
+        	.isPresent();     
     }
     
     public int getRecommendCount() {

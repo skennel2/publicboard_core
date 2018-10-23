@@ -65,8 +65,7 @@ public class PostMyBatisRepository implements PostRepository{
             statementId = "update"; 
         }
         
-        int cnt =  sqlSession.update(namespace + statementId, parameters);
-        System.out.println(cnt);        
+        sqlSession.update(namespace + statementId, parameters);  
     }
 
     @Override
