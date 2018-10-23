@@ -3,13 +3,13 @@ package org.almansa.app.core.service.member;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.member.SimpleMember;
 import org.almansa.app.core.repository.member.MemberRepository;
-import org.almansa.app.core.service.ServiceBase;
 import org.almansa.app.core.service.dto.LoginMemberSessionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 @Component
-public class MemberServiceImpl extends ServiceBase implements MemberService{
+public class MemberServiceImpl implements MemberService{
         
     private MemberRepository memberRepo;
     
@@ -35,9 +35,9 @@ public class MemberServiceImpl extends ServiceBase implements MemberService{
     
     @Override
     public void joinSimply(String loginId, String password) {
-        verifyNotNull(loginId);
-        verifyNotNull(password);
-        
+    	Assert.notNull(loginId, "loginId can't be null");
+    	Assert.notNull(password, "password can't be null");
+
         Member member = memberRepo.getByLoginId(loginId);
         
         if(member == null) {

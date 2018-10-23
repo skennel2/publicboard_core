@@ -10,12 +10,12 @@ import org.almansa.app.core.entity.post.Post;
 import org.almansa.app.core.repository.board.BoardRepository;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
-import org.almansa.app.core.service.ServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
-public class PostServiceImpl extends ServiceBase implements PostService {
+public class PostServiceImpl implements PostService {
 
     private PostRepository postRepo;
     private MemberRepository memberRepo;
@@ -34,8 +34,8 @@ public class PostServiceImpl extends ServiceBase implements PostService {
         final Member member = memberRepo.getById(memberId);
         final Board board = boardRepo.getById(boardId);
 
-        verifyNotNull(member);
-        verifyNotNull(board);
+        Assert.notNull(member, "member can't be null");
+        Assert.notNull(board, "board can't be null");
 
         Post post = new DefaultTextPost(
                 name, 
@@ -55,9 +55,9 @@ public class PostServiceImpl extends ServiceBase implements PostService {
         final Post post = postRepo.getById(postId);
         final Member modifier = memberRepo.getById(modifierId);
 
-        verifyNotNull(name);
-        verifyNotNull(contents);
-        verifyNotNull(post);
+        Assert.notNull(name, "name can't be null");
+        Assert.notNull(contents, "contents can't be null");        
+        Assert.notNull(post, "post can't be null");
 
         if (post.isPossibleModify(modifier.getId())) {
             post.changeName(name);
