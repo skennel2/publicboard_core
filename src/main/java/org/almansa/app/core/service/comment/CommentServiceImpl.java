@@ -16,6 +16,7 @@ import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Service
@@ -34,23 +35,26 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Comment> getPostsComments(Long postId) {
 		return commentRepo.getByPostId(postId);
 	}
 
 	@Override
+	@Transactional
 	public void writeComment(Long postId, Long userId, String contents) throws EntityNotFoundException {
 		Member member = memberRepo.getById(userId);
 		Post post = postRepo.getById(postId);
 
 		Entities.assertEntityNotFound(member, "member can't found");
 		Entities.assertEntityNotFound(post, "post can't found");
-		
+
 		Comment newComment = new DefaultTextComment(new Date(), contents, post.getId(), member.getId());
 		commentRepo.update(newComment);
 	}
 
 	@Override
+	@Transactional
 	public void deletePost(Long commentId, Long userId) throws EntityNotFoundException {
 		Comment comment = commentRepo.getById(commentId);
 

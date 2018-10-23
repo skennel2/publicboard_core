@@ -11,6 +11,7 @@ import org.almansa.app.core.service.dto.LoginMemberSessionModel;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Component
@@ -25,6 +26,7 @@ public class MemberServiceImpl implements MemberService{
     }
     
     @Override
+    @Transactional(readOnly = true)
     public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = getByLoginId(loginId);
         
@@ -41,11 +43,13 @@ public class MemberServiceImpl implements MemberService{
     }
     
     @Override 
+    @Transactional(readOnly = true)
     public Member getByLoginId(String loginId) {
     	return memberRepo.getByLoginId(loginId);
     }
     
     @Override
+    @Transactional
     public void joinSimply(String loginId, String password) throws EntityExistsException{
     	Assert.notNull(loginId, "loginId can't be null");
     	Assert.notNull(password, "password can't be null");

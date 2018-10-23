@@ -14,6 +14,7 @@ import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Service
@@ -32,6 +33,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public void writeNewPost(final Long memberId, final Long boardId, final String name, final String contents) {
         final Member member = memberRepo.getById(memberId);
         final Board board = boardRepo.getById(boardId);
@@ -52,6 +54,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public void modifyTextPostByWriter(final Long postId, final Long modifierId, final String name,
             final String contents) {
         Assert.notNull(name, "name can't be null");
@@ -73,6 +76,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Post getPostByUserClick(final Long clickerId, final Long postId) {
         final Post post = postRepo.getById(postId);
 
@@ -83,22 +87,26 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Post getById(long postId) {
         return postRepo.getById(postId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Post> getWritersPosts(final Long writerId) {
         final List<Post> writersPosts = postRepo.getByWriterId(writerId);
         return writersPosts;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Post> getAll() {
         return postRepo.getAll();
     }
     
     @Override
+    @Transactional
     public void deletePost(final Long userId, final Long postId) {
         final Post post = postRepo.getById(postId);
 
