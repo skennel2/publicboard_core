@@ -6,6 +6,7 @@ import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.member.SimpleMember;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.service.dto.LoginMemberSessionModel;
+import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -20,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
         super();
         this.memberRepo = memberRepo;
     }
-
+    
     @Override
     public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = memberRepo.getByLoginId(loginId);
@@ -42,9 +43,9 @@ public class MemberServiceImpl implements MemberService{
 
         Member member = memberRepo.getByLoginId(loginId);
         
-        if(Objects.isNull(member)) {
-            member = new SimpleMember(loginId, password, false);
-            memberRepo.update(member);      
-        }
+        Entities.assertEntityAleadyExists(member, "member aleady exists");
+        
+        member = new SimpleMember(loginId, password, false);
+        memberRepo.update(member);
     }
 }
