@@ -2,6 +2,8 @@ package org.almansa.app.core.service.member;
 
 import java.util.Objects;
 
+import javax.persistence.EntityExistsException;
+
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.member.SimpleMember;
 import org.almansa.app.core.repository.member.MemberRepository;
@@ -24,9 +26,11 @@ public class MemberServiceImpl implements MemberService{
     
     @Override
     public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
-        Member member = memberRepo.getByLoginId(loginId);
+        Member member = getByLoginId(loginId);
         
-        if(Objects.nonNull(member) && member.getPassword().equals(password)) {            
+        Entities.assertEntityNotFound(member, "member can't found");
+        
+        if(Objects.equals(member.getPassword(), password)) {            
             LoginMemberSessionModel sessionModel = new LoginMemberSessionModel();
             sessionModel.setId(member.getId());
             sessionModel.setLoginId(member.getLoginId());
@@ -36,12 +40,17 @@ public class MemberServiceImpl implements MemberService{
         return null;
     }
     
+    @Override 
+    public Member getByLoginId(String loginId) {
+    	return memberRepo.getByLoginId(loginId);
+    }
+    
     @Override
-    public void joinSimply(String loginId, String password) {
+    public void joinSimply(String loginId, String password) throws EntityExistsException{
     	Assert.notNull(loginId, "loginId can't be null");
     	Assert.notNull(password, "password can't be null");
 
-        Member member = memberRepo.getByLoginId(loginId);
+        Member member = getByLoginId(loginId);
         
         Entities.assertEntityAleadyExists(member, "member aleady exists");
         
