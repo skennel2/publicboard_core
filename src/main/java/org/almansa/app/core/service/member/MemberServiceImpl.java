@@ -1,5 +1,7 @@
 package org.almansa.app.core.service.member;
 
+import java.util.Objects;
+
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.member.SimpleMember;
 import org.almansa.app.core.repository.member.MemberRepository;
@@ -23,7 +25,7 @@ public class MemberServiceImpl implements MemberService{
     public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = memberRepo.getByLoginId(loginId);
         
-        if(member != null && member.getPassword().equals(password)) {            
+        if(Objects.nonNull(member) && member.getPassword().equals(password)) {            
             LoginMemberSessionModel sessionModel = new LoginMemberSessionModel();
             sessionModel.setId(member.getId());
             sessionModel.setLoginId(member.getLoginId());
@@ -31,7 +33,7 @@ public class MemberServiceImpl implements MemberService{
             return sessionModel;
         }
         return null;
-    }    
+    }
     
     @Override
     public void joinSimply(String loginId, String password) {
@@ -40,7 +42,7 @@ public class MemberServiceImpl implements MemberService{
 
         Member member = memberRepo.getByLoginId(loginId);
         
-        if(member == null) {
+        if(Objects.isNull(member)) {
             member = new SimpleMember(loginId, password, false);
             memberRepo.update(member);      
         }

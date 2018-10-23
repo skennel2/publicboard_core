@@ -2,6 +2,7 @@ package org.almansa.app.core.service.post;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;
@@ -10,6 +11,7 @@ import org.almansa.app.core.entity.post.Post;
 import org.almansa.app.core.repository.board.BoardRepository;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
+import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -34,9 +36,9 @@ public class PostServiceImpl implements PostService {
         final Member member = memberRepo.getById(memberId);
         final Board board = boardRepo.getById(boardId);
 
-        Assert.notNull(member, "member can't be null");
-        Assert.notNull(board, "board can't be null");
-
+        Entities.assertEntityNotFound(member, "member can't found");
+        Entities.assertEntityNotFound(board, "board can't found");
+        
         Post post = new DefaultTextPost(
                 name, 
                 new Date(), 
@@ -52,12 +54,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public void modifyTextPostByWriter(final Long postId, final Long modifierId, final String name,
             final String contents) {
+        Assert.notNull(name, "name can't be null");
+        Assert.notNull(contents, "contents can't be null");   
+    	
         final Post post = postRepo.getById(postId);
         final Member modifier = memberRepo.getById(modifierId);
 
-        Assert.notNull(name, "name can't be null");
-        Assert.notNull(contents, "contents can't be null");        
-        Assert.notNull(post, "post can't be null");
+        Entities.assertEntityNotFound(post, "post can't found");
+        Entities.assertEntityNotFound(modifier, "modifier can't found");           
 
         if (post.isPossibleModify(modifier.getId())) {
             post.changeName(name);
@@ -98,10 +102,10 @@ public class PostServiceImpl implements PostService {
     public void deletePost(final Long userId, final Long postId) {
         final Post post = postRepo.getById(postId);
 
-        if (post != null) {
-            if (post.isPossibleDelete(userId)) {
-                postRepo.delete(postId);
-            }
+        Entities.assertEntityNotFound(post, "post can't found");
+        
+        if (post.isPossibleDelete(userId)) {
+            postRepo.delete(postId);
         }
     }
 }
