@@ -20,100 +20,93 @@ import org.springframework.util.Assert;
 @Service
 public class PostServiceImpl implements PostService {
 
-    private PostRepository postRepo;
-    private MemberRepository memberRepo;
-    private BoardRepository boardRepo;
+	private PostRepository postRepo;
+	private MemberRepository memberRepo;
+	private BoardRepository boardRepo;
 
-    @Autowired
-    public PostServiceImpl(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo) {
-        super();
-        this.postRepo = postRepo;
-        this.memberRepo = memberRepo;
-        this.boardRepo = boardRepo;
-    }
+	@Autowired
+	public PostServiceImpl(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo) {
+		super();
+		this.postRepo = postRepo;
+		this.memberRepo = memberRepo;
+		this.boardRepo = boardRepo;
+	}
 
-    @Override
-    @Transactional
-    public void writeNewPost(final Long memberId, final Long boardId, final String name, final String contents) {
-        final Member member = memberRepo.getById(memberId);
-        final Board board = boardRepo.getById(boardId);
+	@Override
+	@Transactional
+	public void writeNewPost(final Long memberId, final Long boardId, final String name, final String contents) {
+		final Member member = memberRepo.getById(memberId);
+		final Board board = boardRepo.getById(boardId);
 
-        Entities.assertEntityNotFound(member, "member can't found");
-        Entities.assertEntityNotFound(board, "board can't found");
-        
-        Post post = new DefaultTextPost(
-                name, 
-                new Date(), 
-                new Date(), 
-                contents, 
-                board.getId(), 
-                member.getId(),
-                0);
+		Entities.assertEntityFound(member, "member can't found");
+		Entities.assertEntityFound(board, "board can't found");
 
-        postRepo.update(post);
-    }
+		Post post = new DefaultTextPost(name, new Date(), new Date(), contents, board.getId(), member.getId(), 0);
 
-    @Override
-    @Transactional
-    public void modifyTextPostByWriter(final Long postId, final Long modifierId, final String name,
-            final String contents) {
-        Assert.notNull(name, "name can't be null");
-        Assert.notNull(contents, "contents can't be null");   
-    	
-        final Post post = postRepo.getById(postId);
-        final Member modifier = memberRepo.getById(modifierId);
+		postRepo.update(post);
+	}
 
-        Entities.assertEntityNotFound(post, "post can't found");
-        Entities.assertEntityNotFound(modifier, "modifier can't found");           
+	@Override
+	@Transactional
+	public void modifyTextPostByWriter(final Long postId, final Long modifierId, final String name,
+			final String contents) {
+		Assert.notNull(name, "name can't be null");
+		Assert.notNull(contents, "contents can't be null");
 
-        if (post.isPossibleModify(modifier.getId())) {
-            post.changeName(name);
-            post.write(contents);
-            post.changeModifiedDate(new Date());
+		final Post post = postRepo.getById(postId);
+		final Member modifier = memberRepo.getById(modifierId);
 
-            postRepo.update(post);
-        }
-    }
+		Entities.assertEntityFound(post, "post can't found");
+		Entities.assertEntityFound(modifier, "modifier can't found");
 
-    @Override
-    @Transactional(readOnly = true)
-    public Post getPostByUserClick(final Long clickerId, final Long postId) {
-        final Post post = postRepo.getById(postId);
+		if (post.isPossibleModify(modifier.getId())) {
+			post.changeName(name);
+			post.write(contents);
+			post.changeModifiedDate(new Date());
 
-        post.increaseClickCount(clickerId);
-        postRepo.update(post);
+			postRepo.update(post);
+		}
+	}
 
-        return post;
-    }
+	@Override
+	@Transactional(readOnly = true)
+	public Post getPostByUserClick(final Long clickerId, final Long postId) {
+		final Post post = postRepo.getById(postId);
 
-    @Override
-    @Transactional(readOnly = true)
-    public Post getById(long postId) {
-        return postRepo.getById(postId);
-    }
+		post.increaseClickCount(clickerId);
+		postRepo.update(post);
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Post> getWritersPosts(final Long writerId) {
-        final List<Post> writersPosts = postRepo.getByWriterId(writerId);
-        return writersPosts;
-    }
+		return post;
+	}
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Post> getAll() {
-        return postRepo.getAll();
-    }
-    
-    @Override
-    @Transactional
-    public void deletePost(final Long userId, final Long postId) {
-        final Post post = postRepo.getById(postId);
+	@Override
+	@Transactional(readOnly = true)
+	public Post getById(long postId) {
+		return postRepo.getById(postId);
+	}
 
-        Entities.assertEntityNotFound(post, "post can't found");
-        
-        if (post.isPossibleDelete(userId)) {
-            postRepo.delete(postId);
-        }
-    }
+	@Override
+	@Transactional(readOnly = true)
+	public List<Post> getWritersPosts(final Long writerId) {
+		final List<Post> writersPosts = postRepo.getByWriterId(writerId);
+		return writersPosts;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Post> getAll() {
+		return postRepo.getAll();
+	}
+
+	@Override
+	@Transactional
+	public void deletePost(final Long userId, final Long postId) {
+		final Post post = postRepo.getById(postId);
+
+		Entities.assertEntityFound(post, "post can't found");
+
+		if (post.isPossibleDelete(userId)) {
+			postRepo.delete(postId);
+		}
+	}
 }

@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService{
     public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
         Member member = getByLoginId(loginId);
         
-        Entities.assertEntityNotFound(member, "member can't found");
+        Entities.assertEntityFound(member, "member can't found");
         
         if(Objects.equals(member.getPassword(), password)) {            
             LoginMemberSessionModel sessionModel = new LoginMemberSessionModel();
@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService{
 
         Member member = getByLoginId(loginId);
         
-        Entities.assertEntityAleadyExists(member, "member aleady exists");
+        Entities.assertEntityNotAleadyExists(member, "member aleady exists");
         
         member = new SimpleMember(loginId, password, false);
         memberRepo.update(member);

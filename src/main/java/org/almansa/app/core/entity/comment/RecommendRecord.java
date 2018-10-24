@@ -22,4 +22,3 @@ public class RecommendRecord implements Immutable{
         return recommendDate;
     }
 }
-

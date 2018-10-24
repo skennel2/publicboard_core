@@ -39,8 +39,7 @@ public class MemberMyBatisRepository implements MemberRepository {
     
     @Override
     public void delete(Long id) {
-        int rowCnt = session.delete(mapperNamespace + "delete", id);
-        System.out.println(rowCnt);
+        session.delete(mapperNamespace + "delete", id);
     }
 
     @Override
@@ -52,8 +51,7 @@ public class MemberMyBatisRepository implements MemberRepository {
             parameters.put("ID" , target.getId());
             parameters.put("ID" , target.getId());
             
-            int rowCnt = session.update(mapperNamespace + "insert", parameters);
-            System.out.println(rowCnt);
+            session.update(mapperNamespace + "insert", parameters);
         }
     }
 

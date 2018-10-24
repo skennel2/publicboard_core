@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.almansa.app.core.Entity;
 import org.almansa.app.core.entity.comment.Comment;
 import org.almansa.app.core.entity.comment.DefaultTextComment;
 import org.almansa.app.core.entity.member.Member;
@@ -46,8 +47,8 @@ public class CommentServiceImpl implements CommentService {
 		Member member = memberRepo.getById(userId);
 		Post post = postRepo.getById(postId);
 
-		Entities.assertEntityNotFound(member, "member can't found");
-		Entities.assertEntityNotFound(post, "post can't found");
+		Entities.assertEntityFound(member, "member can't found");
+		Entities.assertEntityFound(post, "post can't found");
 
 		Comment newComment = new DefaultTextComment(new Date(), contents, post.getId(), member.getId());
 		commentRepo.update(newComment);
@@ -57,8 +58,8 @@ public class CommentServiceImpl implements CommentService {
 	@Transactional
 	public void deletePost(Long commentId, Long userId) throws EntityNotFoundException {
 		Comment comment = commentRepo.getById(commentId);
-
-		Entities.assertEntityNotFound(comment, "comment can't found");
+			
+		Entities.assertEntityFound(comment, "comment can't found");
 
 		if (comment.isPossibleToDelete(userId)) {
 			commentRepo.delete(commentId);

@@ -1,7 +1,7 @@
 package org.almansa.app.core;
 
 public interface Entity<TId> {
-    TId getId();
+	TId getId();
 
-    void setId(TId id);
+	void setId(TId id);
 }
