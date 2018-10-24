@@ -10,11 +10,11 @@ import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.service.dto.LoginMemberSessionModel;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-@Component
+@Service
 public class MemberServiceImpl implements MemberService{
         
     private MemberRepository memberRepo;

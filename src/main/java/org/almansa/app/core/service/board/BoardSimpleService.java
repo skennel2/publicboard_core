@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.board.DefaultTextBoard;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class BoardSimpleService implements BoardService {
 
     @Override

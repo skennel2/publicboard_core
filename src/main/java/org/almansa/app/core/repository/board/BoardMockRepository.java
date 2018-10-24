@@ -8,9 +8,9 @@ import java.util.Map;
 
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.board.DefaultTextBoard;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class BoardMockRepository implements BoardRepository {
 
     private Map<Long, Board> map = new HashMap<Long, Board>();

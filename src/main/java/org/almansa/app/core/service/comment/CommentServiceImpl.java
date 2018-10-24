@@ -2,11 +2,9 @@ package org.almansa.app.core.service.comment;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.almansa.app.core.Entity;
 import org.almansa.app.core.entity.comment.Comment;
 import org.almansa.app.core.entity.comment.DefaultTextComment;
 import org.almansa.app.core.entity.member.Member;
@@ -18,7 +16,6 @@ import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 @Service
 public class CommentServiceImpl implements CommentService {

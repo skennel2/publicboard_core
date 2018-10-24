@@ -2,7 +2,6 @@ package org.almansa.app.core.service.post;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;

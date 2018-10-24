@@ -7,9 +7,9 @@ import java.util.Map;
 import org.almansa.app.core.entity.member.Member;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class MemberMyBatisRepository implements MemberRepository {
 
     private SqlSession session;
