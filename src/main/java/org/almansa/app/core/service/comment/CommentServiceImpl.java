@@ -3,12 +3,11 @@ package org.almansa.app.core.service.comment;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.almansa.app.core.entity.comment.Comment;
 import org.almansa.app.core.entity.comment.DefaultTextComment;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.post.Post;
+import org.almansa.app.core.exception.EntityNotFoundException;
 import org.almansa.app.core.repository.comment.CommentRepository;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
@@ -33,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+		@Transactional(readOnly = true)
 	public List<Comment> getPostsComments(Long postId) {
 		return commentRepo.getByPostId(postId);
 	}

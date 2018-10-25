@@ -2,10 +2,9 @@ package org.almansa.app.core.util;
 
 import java.util.Objects;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
-
 import org.almansa.app.core.Entity;
+import org.almansa.app.core.exception.EntityExistsException;
+import org.almansa.app.core.exception.EntityNotFoundException;
 
 public final class Entities {
 	

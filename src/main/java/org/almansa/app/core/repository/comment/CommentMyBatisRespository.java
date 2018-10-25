@@ -10,58 +10,58 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CommentMyBatisRespository implements CommentRepository{
-    
-    private final String mapperNamespace = "COMMENT_MAPPER.";
-         
-    private SqlSession session;   
+public class CommentMyBatisRespository implements CommentRepository {
 
-    @Autowired    
-    public CommentMyBatisRespository(SqlSession session) {
-        super();
-        this.session = session;
-    }
+	private final String mapperNamespace = "COMMENT_MAPPER.";
 
-    @Override
-    public Comment getById(Long id) {       
-        Comment comment = session.selectOne(mapperNamespace + "getById", id);        
-        return comment;
-    }
+	private SqlSession session;
 
-    @Override
-    public List<Comment> getAll() {
-        List<Comment> comments = session.selectList(mapperNamespace + "getAll");
-        return comments;
-    }
-    
-    @Override
-    public List<Comment> getByWriterId(Long userId) {
-        List<Comment> comments = session.selectList(mapperNamespace + "getByWriterId", userId);
-        return comments;
-    }
+	@Autowired
+	public CommentMyBatisRespository(SqlSession session) {
+		super();
+		this.session = session;
+	}
 
-    @Override
-    public List<Comment> getByPostId(Long postId) {
-        List<Comment> comments = session.selectList(mapperNamespace + "getByPostId", postId);
-        return comments;
-    }    
+	@Override
+	public Comment getById(Long id) {
+		Comment comment = session.selectOne(mapperNamespace + "getById", id);
+		return comment;
+	}
 
-    @Override
-    public void delete(Long id) {
-        int rowCount = session.delete(mapperNamespace + "delete", id);
-        System.out.println(rowCount);
-    }
+	@Override
+	public List<Comment> getAll() {
+		List<Comment> comments = session.selectList(mapperNamespace + "getAll");
+		return comments;
+	}
 
-    @Override
-    public void update(Comment target) {
-       if(target.getId() == null) {           
-           Map<String, Object> parameters = new HashMap<String, Object>();
-           parameters.put("POST_ID", target.getOwnerPostId());
-           parameters.put("MEMBER_ID", target.getWriterId());
-           parameters.put("CONTENTS", target.getContents());
-           parameters.put("WRITE_DATE", target.getCreationDate());
-           
-           session.update(mapperNamespace + "insert", parameters);
-       }
-    }
+	@Override
+	public List<Comment> getByWriterId(Long userId) {
+		List<Comment> comments = session.selectList(mapperNamespace + "getByWriterId", userId);
+		return comments;
+	}
+
+	@Override
+	public List<Comment> getByPostId(Long postId) {
+		List<Comment> comments = session.selectList(mapperNamespace + "getByPostId", postId);
+		return comments;
+	}
+
+	@Override
+	public void delete(Long id) {
+		int rowCount = session.delete(mapperNamespace + "delete", id);
+		System.out.println(rowCount);
+	}
+
+	@Override
+	public void update(Comment target) {
+		if (target.getId() == null) {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("POST_ID", target.getOwnerPostId());
+			parameters.put("MEMBER_ID", target.getWriterId());
+			parameters.put("CONTENTS", target.getContents());
+			parameters.put("WRITE_DATE", target.getCreationDate());
+
+			session.update(mapperNamespace + "insert", parameters);
+		}
+	}
 }
