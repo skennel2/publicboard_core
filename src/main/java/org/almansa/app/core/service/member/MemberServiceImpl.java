@@ -60,4 +60,9 @@ public class MemberServiceImpl implements MemberService {
 		member = new SimpleMember(loginId, password, false);
 		memberRepo.update(member);
 	}
+
+	@Override
+	public Member getById(Long id) {
+		return memberRepo.getById(id);
+	}
 }

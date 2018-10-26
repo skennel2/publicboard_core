@@ -17,5 +17,7 @@ public interface MemberService {
     void joinSimply(String loginId, String password);
 
 	Member getByLoginId(String loginId);
+	
+	Member getById(Long id);
 
 }
