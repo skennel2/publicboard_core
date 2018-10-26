@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-		@Transactional(readOnly = true)
+	@Transactional(readOnly = true)
 	public List<Comment> getPostsComments(Long postId) {
 		return commentRepo.getByPostId(postId);
 	}
@@ -54,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
 	@Transactional
 	public void deletePost(Long commentId, Long userId) throws EntityNotFoundException {
 		Comment comment = commentRepo.getById(commentId);
-			
+
 		Entities.assertEntityFound(comment, "comment can't found");
 
 		if (comment.isPossibleToDelete(userId)) {
