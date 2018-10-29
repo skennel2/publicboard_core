@@ -1,6 +1,7 @@
 package org.almansa.app.core.entity.post;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class DefaultTextPost implements Post {
 
@@ -113,19 +114,19 @@ public class DefaultTextPost implements Post {
 
     @Override
     public void increaseClickCount(Long clickUserId) {
-        if (clickUserId != writerId) {
+        if (!Objects.equals(clickUserId, writerId)) {
             this.clickCount++;
         }
     }
 
     @Override
     public boolean isPossibleDelete(Long userId) {
-        return userId == writerId;
+        return Objects.equals(userId, writerId);
     }
 
     @Override
     public boolean isPossibleModify(Long userId) {
-        return userId == this.writerId;
+        return  Objects.equals(userId, writerId);
     }
 
     @Override

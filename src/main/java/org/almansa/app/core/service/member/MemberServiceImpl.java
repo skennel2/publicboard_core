@@ -64,10 +64,15 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public void joinSimply(String loginId, String password) throws EntityExistsException {
+	public void joinSimply(String loginId, String password, String passwordCheck) throws EntityExistsException {
 		Assert.notNull(loginId, "loginId can't be null");
 		Assert.notNull(password, "password can't be null");
-
+		Assert.notNull(passwordCheck, "passwordCheck can't be null");
+		
+		if(!password.equals(passwordCheck)) {
+			throw new RuntimeException(); //TODO
+		}
+		
 		Member member = getByLoginId(loginId);
 
 		Entities.assertEntityNotAleadyExists(member, "member aleady exists");

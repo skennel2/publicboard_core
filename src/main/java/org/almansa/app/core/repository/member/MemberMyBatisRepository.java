@@ -46,10 +46,9 @@ public class MemberMyBatisRepository implements MemberRepository {
     public void update(Member target) {        
         if(target.getId() == null) {
             Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("ID" , target.getId());
-            parameters.put("LOGIN_ID" , target.getId());
-            parameters.put("ID" , target.getId());
-            parameters.put("ID" , target.getId());
+            parameters.put("LOGIN_ID" , target.getLoginId());
+            parameters.put("PASSWORD" , target.getPassword());
+            parameters.put("IS_ADMIN" , target.isAdmin());
             
             session.update(mapperNamespace + "insert", parameters);
         }
