@@ -1,8 +1,22 @@
 package org.almansa.app.core.service.dto;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class LoginMemberSessionModel {
 	private Long id;
 	private String loginId;
+	private boolean isLoginSuccess;
+	private List<String> failureMessages;
+	private Date loginDate;
+
+	
+	
+	public LoginMemberSessionModel() {
+		super();
+		this.failureMessages = new ArrayList<String>();
+	}
 
 	public Long getId() {
 		return id;
@@ -20,8 +34,33 @@ public class LoginMemberSessionModel {
 		this.loginId = loginId;
 	}
 
+	public boolean isLoginSuccess() {
+		return isLoginSuccess;
+	}
+
+	public void setLoginSuccess(boolean isLoginSuccess) {
+		this.isLoginSuccess = isLoginSuccess;
+	}
+
+	public List<String> getFailureMessages() {
+		return failureMessages;
+	}
+
+	public void setFailureMessages(List<String> failureMessages) {
+		this.failureMessages = failureMessages;
+	}
+
+	public Date getLoginDate() {
+		return loginDate;
+	}
+
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
+	}
+
 	@Override
 	public String toString() {
-		return "LoginMemberSessionModel [id=" + id + ", loginId=" + loginId + "]";
+		return "LoginMemberSessionModel [id=" + id + ", loginId=" + loginId + ", isLoginSuccess=" + isLoginSuccess
+				+ ", failureMessages=" + failureMessages + "]";
 	}
 }

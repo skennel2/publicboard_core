@@ -1,5 +1,6 @@
 package org.almansa.app.core.service.member;
 
+import java.util.Date;
 import java.util.Objects;
 
 import org.almansa.app.core.entity.member.Member;
@@ -27,18 +28,32 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional(readOnly = true)
 	public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
-		Member member = getByLoginId(loginId);
+		LoginMemberSessionModel loginModel = new LoginMemberSessionModel();
 
-		Entities.assertEntityFound(member, "member can't found");
+		try {
+			Member member = getByLoginId(loginId);
+			if (Objects.isNull(member)) {
+				loginModel.setLoginSuccess(false);
+				loginModel.getFailureMessages().add("아이디가 존재하지 않습니다.");
+				return loginModel;
+			}
 
-		if (Objects.equals(member.getPassword(), password)) {
-			LoginMemberSessionModel sessionModel = new LoginMemberSessionModel();
-			sessionModel.setId(member.getId());
-			sessionModel.setLoginId(member.getLoginId());
+			if (false == Objects.equals(member.getPassword(), password)) {
+				loginModel.setLoginSuccess(false);
+				loginModel.getFailureMessages().add("비밀번호를 확인해주세요.");
+				return loginModel;
+			}
 
-			return sessionModel;
+			loginModel.setId(member.getId());
+			loginModel.setLoginId(member.getLoginId());
+			loginModel.setLoginSuccess(true);
+			loginModel.setLoginDate(new Date());
+
+		} catch (Exception ex) {
+			loginModel.setLoginSuccess(false);
 		}
-		return null;
+
+		return loginModel;
 	}
 
 	@Override
