@@ -14,7 +14,7 @@ public interface MemberService {
      */
     LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password);
 
-    void joinSimply(String loginId, String password, String passwordCheck);
+    void joinSimply(String loginId, String password, String passwordCheck) throws MemberJoinException;
 
 	Member getByLoginId(String loginId);
 	

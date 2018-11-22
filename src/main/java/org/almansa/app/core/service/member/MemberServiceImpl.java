@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 				return loginModel;
 			}
 
-			if (false == Objects.equals(member.getPassword(), password)) {
+			if (!Objects.equals(member.getPassword(), password)) {
 				loginModel.setLoginSuccess(false);
 				loginModel.getFailureMessages().add("비밀번호를 확인해주세요.");
 				return loginModel;
@@ -51,6 +51,7 @@ public class MemberServiceImpl implements MemberService {
 
 		} catch (Exception ex) {
 			loginModel.setLoginSuccess(false);
+			loginModel.getFailureMessages().add(ex.getMessage());
 		}
 
 		return loginModel;
@@ -64,17 +65,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public void joinSimply(String loginId, String password, String passwordCheck) throws EntityExistsException {
-		Assert.notNull(loginId, "loginId can't be null");
-		Assert.notNull(password, "password can't be null");
-		Assert.notNull(passwordCheck, "passwordCheck can't be null");
+	public void joinSimply(String loginId, String password, String passwordCheck) throws EntityExistsException, MemberJoinException {
+		try {
+			Assert.notNull(loginId, "loginId can't be null");
+			Assert.notNull(password, "password can't be null");
+			Assert.notNull(passwordCheck, "passwordCheck can't be null");
+		}catch(IllegalArgumentException ex) {
+			throw new MemberJoinException("required value is null", ex);
+		}
 		
 		if(!password.equals(passwordCheck)) {
-			throw new RuntimeException(); //TODO
+			throw new MemberJoinException("passwordCheck");
 		}
 		
 		Member member = getByLoginId(loginId);
-
 		Entities.assertEntityNotAleadyExists(member, "member aleady exists");
 
 		member = new SimpleMember(loginId, password, false);
@@ -82,6 +86,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Member getById(Long id) {
 		return memberRepo.getById(id);
 	}
