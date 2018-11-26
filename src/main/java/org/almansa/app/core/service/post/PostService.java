@@ -18,5 +18,5 @@ public interface PostService {
     
     List<Post> getAll();
     
-    void deletePost(Long userId, Long postId);
+    void deletePost(Long userId, Long postId) throws PostModifyException;
 }

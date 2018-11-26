@@ -3,15 +3,20 @@ package org.almansa.app.core.service.post;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.post.DefaultTextPost;
 import org.almansa.app.core.entity.post.Post;
 import org.almansa.app.core.repository.board.BoardRepository;
+import org.almansa.app.core.repository.comment.CommentRepository;
 import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -22,13 +27,19 @@ public class PostServiceImpl implements PostService {
 	private PostRepository postRepo;
 	private MemberRepository memberRepo;
 	private BoardRepository boardRepo;
+	private CommentRepository commentRepo;
+	
+	//@Resource(name="redisTemplate")
+	//private ValueOperations<String, Object> redis;
 
 	@Autowired
-	public PostServiceImpl(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo) {
+	public PostServiceImpl(PostRepository postRepo, MemberRepository memberRepo, BoardRepository boardRepo,
+			CommentRepository commentRepo) {
 		super();
 		this.postRepo = postRepo;
 		this.memberRepo = memberRepo;
 		this.boardRepo = boardRepo;
+		this.commentRepo = commentRepo;
 	}
 
 	@Override
@@ -42,6 +53,9 @@ public class PostServiceImpl implements PostService {
 
 		Post post = new DefaultTextPost(name, new Date(), new Date(), contents, board.getId(), member.getId(), 0);
 
+		//template.set
+		//redis.set(name, contents);
+		
 		postRepo.update(post);
 	}
 
@@ -99,13 +113,19 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	@Transactional
-	public void deletePost(final Long userId, final Long postId) {
+	public void deletePost(final Long userId, final Long postId) throws PostModifyException {
 		final Post post = postRepo.getById(postId);
 
 		Entities.assertEntityFound(post, "post can't found");
 
-		if (post.isPossibleDelete(userId)) {
-			postRepo.delete(postId);
+		if (!post.isPossibleDelete(userId)) {
+			throw new PostModifyException("삭제 권한이 없습니다.");
 		}
+		
+		if(commentRepo.getByPostId(postId).size() != 0) {
+			throw new PostModifyException("댓글이 존재하면 삭제할 수 없습니다.");
+		}
+		
+		postRepo.delete(postId);
 	}
 }
