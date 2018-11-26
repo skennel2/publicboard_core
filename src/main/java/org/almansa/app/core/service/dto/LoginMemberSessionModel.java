@@ -1,18 +1,19 @@
 package org.almansa.app.core.service.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class LoginMemberSessionModel {
+public class LoginMemberSessionModel implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String loginId;
 	private boolean isLoginSuccess;
 	private List<String> failureMessages;
 	private Date loginDate;
 
-	
-	
 	public LoginMemberSessionModel() {
 		super();
 		this.failureMessages = new ArrayList<String>();

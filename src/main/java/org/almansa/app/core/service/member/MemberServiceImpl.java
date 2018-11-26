@@ -10,6 +10,8 @@ import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.service.dto.LoginMemberSessionModel;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -17,13 +19,11 @@ import org.springframework.util.Assert;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	private MemberRepository memberRepo;
-
 	@Autowired
-	public MemberServiceImpl(MemberRepository memberRepo) {
-		super();
-		this.memberRepo = memberRepo;
-	}
+	private MemberRepository memberRepo;
+	
+	@Autowired
+	private RedisTemplate<String, LoginMemberSessionModel> redisTemplate;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -48,10 +48,13 @@ public class MemberServiceImpl implements MemberService {
 			loginModel.setLoginId(member.getLoginId());
 			loginModel.setLoginSuccess(true);
 			loginModel.setLoginDate(new Date());
+			
+			redisTemplate.opsForValue().set(member.getLoginId(), loginModel);
 
 		} catch (Exception ex) {
 			loginModel.setLoginSuccess(false);
 			loginModel.getFailureMessages().add(ex.getMessage());
+			ex.printStackTrace();
 		}
 
 		return loginModel;

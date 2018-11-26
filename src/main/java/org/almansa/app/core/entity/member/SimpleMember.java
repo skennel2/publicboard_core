@@ -1,8 +1,10 @@
 package org.almansa.app.core.entity.member;
 
-public class SimpleMember implements Member {
+import java.io.Serializable;
 
-    private Long id;
+public class SimpleMember implements Member, Serializable {
+	private static final long serialVersionUID = 1L;
+	private Long id;
     private String loginId;
     private String password;
     
