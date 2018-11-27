@@ -3,8 +3,6 @@ package org.almansa.app.core.service.post;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.almansa.app.core.entity.board.Board;
 import org.almansa.app.core.entity.member.Member;
 import org.almansa.app.core.entity.post.DefaultTextPost;
@@ -15,8 +13,6 @@ import org.almansa.app.core.repository.member.MemberRepository;
 import org.almansa.app.core.repository.post.PostRepository;
 import org.almansa.app.core.util.Entities;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
