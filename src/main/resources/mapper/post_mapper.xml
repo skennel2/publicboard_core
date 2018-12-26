@@ -13,6 +13,7 @@
             <arg column="CONTENTS" javaType="String"/>
             <arg column="BID" javaType="java.lang.Long"/>            
             <arg column="MID" javaType="java.lang.Long"/>
+            <arg column="LOGIN_ID" javaType="String"/>
             <arg column="CLICK_CNT" javaType="java.lang.Integer"/> 
         </constructor>
     </resultMap>

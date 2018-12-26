@@ -47,11 +47,8 @@ public class PostServiceImpl implements PostService {
 		Entities.assertEntityFound(member, "member can't found");
 		Entities.assertEntityFound(board, "board can't found");
 
-		Post post = new DefaultTextPost(name, new Date(), new Date(), contents, board.getId(), member.getId(), 0);
+		Post post = new DefaultTextPost(name, new Date(), new Date(), contents, board.getId(), member.getId(), member.getLoginId(), 0);
 
-		//template.set
-		//redis.set(name, contents);
-		
 		postRepo.update(post);
 	}
 
