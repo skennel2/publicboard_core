@@ -8,10 +8,10 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
-@Configuration
+//@Configuration
 public class RedisConfiguration {
 
-	@Bean
+	//@Bean
 	public JedisConnectionFactory jedisConnectionFactory() {
 		RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration("localhost", 6379);
 		
@@ -19,7 +19,7 @@ public class RedisConfiguration {
 		return jedisConnectionFactory;
 	}
 	
-	@Bean
+	//@Bean
 	public RedisTemplate<String, LoginMemberSessionModel> memberRedisTemplate(){
 		RedisTemplate<String, LoginMemberSessionModel> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setEnableTransactionSupport(true); // 트랜젝션 적용여부

@@ -23,8 +23,8 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepo;
 	
-	@Autowired
-	private RedisTemplate<String, LoginMemberSessionModel> redisTemplate;
+	//@Autowired
+	//private RedisTemplate<String, LoginMemberSessionModel> redisTemplate;
 
 	@Transactional(readOnly = true)
 	public LoginMemberSessionModel loginAndGetUserSessionModel(String loginId, String password) {
@@ -49,7 +49,7 @@ public class MemberService {
 			loginModel.setLoginSuccess(true);
 			loginModel.setLoginDate(new Date());
 			
-			redisTemplate.opsForValue().setIfAbsent(member.getLoginId(), loginModel, Duration.ofHours(1));
+			//redisTemplate.opsForValue().setIfAbsent(member.getLoginId(), loginModel, Duration.ofHours(1));
 
 		} catch (Exception ex) {
 			loginModel.setLoginSuccess(false);
